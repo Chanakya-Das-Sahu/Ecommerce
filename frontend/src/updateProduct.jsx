@@ -2,23 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
-import { useDispatch } from 'react-redux'
-import { store } from './store';
 import cross from './delete.png'
 const UpdateProduct = () => {
     const [product, setProduct] = useState('')
    const navigate = useNavigate();
-    const id = store.getState().product.product.productId
-    console.log(id)
-    //    useEffect(()=>{
-    //  setId(store.getState().product.product.productId)
-    //    console.log("outer",id)
-    //    },[])
+    
     useEffect(() => {
 
         const getData = async () => {
-
-
+            const id = '1'
             const res = await axios.get(`http://localhost:3000/api/general/getProduct/${id}`)
             console.log(res)
             setProduct(res.data)

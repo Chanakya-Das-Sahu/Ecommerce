@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react'
 import {useDispatch} from 'react-redux' 
 import axios from 'axios'
 import cross from './delete.png' 
-import { addProductId } from './slice'
-import { store } from './store'
 import UpdateProduct from './updateProduct'
 const adminConsole = () => {
     const navigate = useNavigate();

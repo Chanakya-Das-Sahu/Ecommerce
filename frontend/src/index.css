@@ -5,29 +5,3 @@
 .charu{
     border:1px solid black;
 }
-
-input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    width: 20px; /* Adjust size as needed */
-    height: 20px; /* Adjust size as needed */
-    border: 1px solid #000; /* Border color */
-    border-radius: 0; /* No border radius to make it square */
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-}
-
-input[type="radio"]:checked {
-     /* Change background color when checked */
-}
-
-input[type="radio"]:checked::after {
-    content: "\2713"; /* Unicode checkmark character */
-    position: absolute;
-    top: -5px; /* Adjust position as needed */
-    left: 2px; /* Adjust position as needed */
-    font-size: 16px; /* Adjust size as needed */
-    color: black; /* Color of the checkmark */
-}

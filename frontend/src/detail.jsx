@@ -5,7 +5,7 @@ import { context } from './App'
 import { useContext } from 'react'
 const Detail = () => {
     const [product, setProduct] = useState('')
-    const { details, setDetails } = useContext(context)
+    const { details, setDetails , setShowSignupPage} = useContext(context)
     useEffect(() => {
 
         const getData = async () => {
@@ -19,15 +19,16 @@ const Detail = () => {
     }, [])
 
     const addToCart = async () => {
+        console.log('details.userId',details)
         if(details.userId!=''){
           const cartData = {productId:details.productId,qty:'1'}
     
         const res =  await axios.post('http://localhost:3000/api/general/addToCart',cartData,{
             headers:{ Authorization : details.token }
         })
-        console.log('cart',res.data.msg)
+        console.log('cart',res.data)
         }else{
-    
+          setShowSignupPage(true)
         }
        
       }
