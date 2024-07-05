@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { context } from './App'
 const Cart = () => {
-    const { details, setShowSignupPage } = useContext(context)
+    const { details,setDetails, setShowSignupPage } = useContext(context)
     const [products, setProducts] = useState([])
     const [qty, setQty] = useState()
     const getData = async () => {
@@ -11,9 +11,15 @@ const Cart = () => {
             headers: { Authorization: details.token }
         })
         console.log('res', res)
+        if(res.data.msg=='available'){
         setProducts(res.data.products)
         console.log(res.data.quantities[0].quantity)
         setQty(res.data.quantities)
+        }
+        if(res.data.alert=='jwt expired'){
+            setShowSignupPage(true)
+            setDetails({productId:'',userId:'',token:''})
+        }
     }
 
     useEffect(() => {

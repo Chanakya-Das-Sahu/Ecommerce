@@ -51,7 +51,7 @@ router.get('/getProducts', async (req, res) => {
 })
 
 
-router.post('/addToCart', async (req, res) => {
+router.post('/addToCart',Auth, async (req, res) => {
    const { userId, productId, qty } = req.body
    const cartFound = await cart.findOne({ userId })
    if (cartFound) {
@@ -70,18 +70,36 @@ router.post('/addToCart', async (req, res) => {
 })
 
 router.post('/getCart',Auth,async(req,res)=>{
+   console.log('getCart')
    const{userId} = req.body 
    const Cart = await cart.findOne({userId})
    // console.log('Cart',Cart)
+   if(Cart){
    const products = await Promise.all(
       Cart.products.map(async (ele)=>{
          return await product.findById(ele.productId)
       })
    )
    // console.log('products',products)
-   res.json({products,quantities:Cart.products,msg:'successful'})
+   res.json({products,quantities:Cart.products,msg:'available'})
+}else{
+   res.json({alert:'not available'})
+}
 })
 
+router.post('/checkProductInCart/:productId',Auth,async(req,res)=>{
+   const{productId} = req.params
+   const{userId} = req.body
+   const Cart = await cart.findOne({userId})
+   if(Cart){
+      const Exists = Cart.products.some((product)=>product.productId==productId)
+      if(Exists){
+         res.json({msg:'exists'})
+      }else{
+         res.json({alert:'not exist'})
+      }
+   }
+})
 router.post('/removeProductCart/:index',Auth,async(req,res)=>{
    const {index} = req.params 
    const {userId} = req.body 

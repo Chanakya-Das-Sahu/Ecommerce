@@ -6,6 +6,7 @@ import { useContext } from 'react'
 const Detail = () => {
     const [product, setProduct] = useState('')
     const { details, setDetails , setShowSignupPage} = useContext(context)
+    const [cartBool,setCartBool] = useState('Add To Cart')
     useEffect(() => {
 
         const getData = async () => {
@@ -15,7 +16,17 @@ const Detail = () => {
             setProduct(res.data)
         }
 
+        const checkProductInCart = async () =>{
+            const res = await axios.post(`http://localhost:3000/api/general/checkProductInCart/${details.productId}`,{},{
+                headers:{Authorization:details.token}
+            }) 
+            if(res.data.msg){
+                setCartBool('Added To Cart')
+            }
+        }
+
         getData()
+        checkProductInCart()
     }, [])
 
     const addToCart = async () => {
@@ -27,6 +38,7 @@ const Detail = () => {
             headers:{ Authorization : details.token }
         })
         console.log('cart',res.data)
+        setCartBool('Added To Cart')
         }else{
           setShowSignupPage(true)
         }
@@ -75,7 +87,7 @@ const Detail = () => {
                                 <div><b>Price : </b>{product.price}</div>
                                 <div><b>Category :</b>{product.cat}</div>
                                 <div><b>Quantity Available : </b>{product.qty}</div>
-                                <button onClick={addToCart} class='charu mx-[20px] px-[10px]'>Add To Cart</button>
+                                <button onClick={addToCart} class='charu mx-[20px] px-[10px]'>{cartBool}</button>
                                 <buton onClick={purchase} class='charu px-[10px]'>Purchase</buton>
                             </div>
 
