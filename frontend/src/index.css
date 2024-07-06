@@ -5,3 +5,7 @@
 .charu{
     border:1px solid black;
 }
+
+.scroll::-webkit-scrollbar { /* WebKit browsers (Chrome, Safari, etc.) */
+    display: none;
+  }

@@ -20,17 +20,17 @@ const Navbar = () => {
         setShowLogout(false)
     }
     return (
-        <nav className='border border-solid border-black flex justify-around items-center'>
-            <div className='charu'><Link to='/'>Home</Link></div>
-            <div className='charu'><Link to='/Cart'>Cart</Link></div>
-            <div className='charu'><Link to='/Orders'>Orders</Link></div>
-            <div className='charu'><Link to='/adminConsole'>adminConsole</Link></div>
+        <nav className='border border-solid border-black flex justify-around items-center h-[50px]'>
+            <div className=''><Link to='/'>Home</Link></div>
+            <div className=''><Link to='/Cart'>Cart</Link></div>
+            <div className=''><Link to='/Orders'>Orders</Link></div>
+            <div className=''><Link to='/adminConsole'>adminConsole</Link></div>
             {showLogout ?
                 <button onClick={handleLogout }>Log Out</button>
                 :
                 <>
-                    <button onClick={() => { setShowLoginPage(true) }}>Login</button>
-                    <button onClick={() => { setShowSignupPage(true)}}>Signup</button>
+                    <button onClick={() => { setShowLoginPage(true);setShowSignupPage(false) }}>Login</button>
+                    <button onClick={() => { setShowSignupPage(true);setShowLoginPage(false)}}>Signup</button>
                 </>
             }
 {showLoginPage && <Login/>}
