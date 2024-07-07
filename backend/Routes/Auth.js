@@ -5,8 +5,7 @@ const jwtKey = process.env.JWT_KEY
 const Auth = (req,res,next) =>{
      // console.log('req.headers.Authorization',req.headers.authorization)
      if(req.headers.authorization!='' ){
-          console.log('')
-          console.log('auth req.header.auth',req.headers.authorization)
+         //  console.log('auth req.header.auth',req.headers.authorization)
 try{
  const User = jwt.verify(req.headers.authorization,jwtKey)
  if(User){
