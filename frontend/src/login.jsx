@@ -17,7 +17,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     if(isEmailValid && isPasswordValid){
-       const res = await axios.post('http://localhost:3000/api/general/login', userDetails)
+       const res = await axios.post('https://chanakya-ecom.onrender.com/api/general/login', userDetails)
     // console.log('res login',res)
     if(res.data.alert=='incorrect credentials'){
       setIncorrectCredentials(true)

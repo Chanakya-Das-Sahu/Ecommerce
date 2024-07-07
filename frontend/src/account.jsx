@@ -8,7 +8,7 @@ const Account = () => {
     useEffect(() => {
      
         const getDetails = async () => {
-            const res = await axios.post(`http://localhost:3000/api/general/getUserDetails`, {}, {
+            const res = await axios.post(`https://chanakya-ecom.onrender.com/api/general/getUserDetails`, {}, {
                 headers: { Authorization: details.token }
             })
             if(res.data.User){
@@ -35,7 +35,7 @@ getDetails()
     const updateDetails = async () =>{
         const notEmpty = Object.values(userDetails).every(value=>value!=='')
        if(notEmpty){
-       const res = await axios.put('http://localhost:3000/api/general/updateUserDetails',userDetails,{
+       const res = await axios.put('https://chanakya-ecom.onrender.com/api/general/updateUserDetails',userDetails,{
         headers:{Authorization:details.token}
        })
        }

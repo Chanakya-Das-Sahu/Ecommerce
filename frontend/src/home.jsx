@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
 
     const getData = async () => {
-      const res = await axios.get('http://localhost:3000/api/general/getProducts')
+      const res = await axios.get('https://chanakya-ecom.onrender.com/api/general/getProducts')
       // console.log('res', res)
       if (res) {
         setProducts(res.data.products)
