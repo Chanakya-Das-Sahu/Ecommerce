@@ -11,7 +11,7 @@ const Cart = () => {
             headers: { Authorization: details.token }
         })
 
-        console.log('res getData', res)
+        // console.log('res getData', res)
         if (res.data.msg == 'available') {
             setProducts(res.data.products)
             setQty(res.data.quantities)
@@ -74,7 +74,7 @@ const Cart = () => {
     }
 
     const orderProduct = async (productId) =>{
-        console.log('productId',productId)
+        // console.log('productId',productId)
         const res = await axios.post(`http://localhost:3000/api/general/orderProduct`,{productId},{
             headers:{Authorization:details.token}
         })
@@ -83,7 +83,7 @@ const Cart = () => {
             setDetails({ productId: '', userId: '', token: '' })
             setShowLogout(false)
         }
-        console.log('orderProduct res',res)
+        // console.log('orderProduct res',res)
     }
 
     return (

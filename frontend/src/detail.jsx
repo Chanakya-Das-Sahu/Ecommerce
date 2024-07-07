@@ -10,9 +10,9 @@ const Detail = () => {
     useEffect(() => {
 
         const getData = async () => {
-            console.log('details', details)
+            // console.log('details', details)
             const res = await axios.get(`http://localhost:3000/api/general/getProduct/${details.productId}`)
-            console.log('detail', res)
+            // console.log('detail', res)
             setProduct(res.data)
         }
 
@@ -36,7 +36,7 @@ const Detail = () => {
     }, [])
 
     const addToCart = async () => {
-        console.log('details.userId', details)
+        // console.log('details.userId', details)
         if (details.userId != '') {
             const cartData = { productId: details.productId, qty: '1' }
 
@@ -48,7 +48,7 @@ const Detail = () => {
                 setDetails({ productId: '', userId: '', token: '' })
                 setShowLogout(false)
             }
-            console.log('cart', res.data)
+            // console.log('cart', res.data)
             setCartBool('Added To Cart')
         } else {
             setShowSignupPage(true)

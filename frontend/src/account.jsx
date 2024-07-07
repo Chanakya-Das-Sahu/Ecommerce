@@ -11,7 +11,6 @@ const Account = () => {
             const res = await axios.post(`http://localhost:3000/api/general/getUserDetails`, {}, {
                 headers: { Authorization: details.token }
             })
-            console.log('res account : ',res)
             if(res.data.User){
  setUserDetails(res.data.User)
             }
@@ -26,7 +25,6 @@ const Account = () => {
 getDetails()
       }
 
-      console.log('UserDetails',userDetails)
         
     }, [])
 

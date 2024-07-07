@@ -13,7 +13,7 @@ const Navbar = () => {
         }else{
             setShowLogout(true)
         }
-        console.log('details',details)
+        // console.log('details',details)
     },[])
 
     const handleLogout = () =>{
