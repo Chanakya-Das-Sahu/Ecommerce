@@ -49,38 +49,6 @@ const validatePassword = (password) => {
     return(
         <>
 
-      
-          {/* <div className='border border-solid border-black flex flex-col justify-center items-center absolute top-1/2 left-1/2 
-        transform -translate-x-1/2 -translate-y-1/2 gap-[50px] w-[300px] h-[400px] px-[25px] py-[50px] bg-[red] '>
-          <button className='absolute top-[1%] right-[1%]' onClick={()=>{setShowSignupPage(false)}} >❌</button>
-          <div>Signup</div>
-      
-          <input type='text' className='w-full h-[30px]' name='email'onChange={(e)=>{handleInput(e)}}/>
-        <input type='password' className='w-full h-[30px]' name='password' onChange={(e)=>{handleInput(e)}}/>
-        <button onClick={handleSignup} className='border border-solid border-black bg-[black] w-full h-[30px] '>Signup</button>
-        <p onClick={()=>{setShowLoginPage(true);setShowSignupPage(false)}}><u>Login</u></p>
-         </div> */}
-
-
-
-         {/* and  */}
-
-
-         {/* <div className="signup-dialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] bg-white flex flex-col justify-around rounded-md shadow-md p-6 z-50 h-[400px]"> 
-  <button className="close-btn absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => setShowSignupPage(false)}>
-    &times;
-  </button>
-
-  <h2 className="text-xl font-medium mb-4 text-center">Signup</h2> 
-<div className='flex flex-col gap-[20px] mb-[100px]'>
-<input type="text" className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" name="email" onChange={(e) => handleInput(e)} placeholder="Email Address" />
-  <input type="password" className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" name="password" onChange={(e) => handleInput(e)} placeholder="Password" />
-
-  <button onClick={handleSignup} className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Signup</button> 
-</div>
-<button onClick={()=>{setShowLoginPage(true);setShowSignupPage(false)}}><u>login</u></button>
-  </div> */}
-
 <div className="login-dialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] bg-white flex flex-col justify-around rounded-md shadow-md p-6 z-50 h-[400px]">
   <button className="close-btn absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => setShowSignupPage(false)}>
     &times;
@@ -125,6 +93,8 @@ const validatePassword = (password) => {
     >
       Signup
     </button>
+
+   <button onClick={()=>{setShowLoginPage(true);setShowSignupPage(false)}}><u>Login</u></button>
   </div>
 </div>
 

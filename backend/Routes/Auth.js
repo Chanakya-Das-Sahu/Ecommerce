@@ -20,23 +20,8 @@ try{
 checkUser()
 }
 }catch(err){
-     console.log('err',err)
-  if(err=='TokenExpiredError'){
      res.json({alert:'jwt expired'})
-  }
 }
-    
-
-     // if(User){
-     //      const checkUser = async  () =>{
-     //        const userFound = await user.findById(User.userId)
-     //        if(userFound){
-     //         req.body.userId = User.userId 
-     //            next()
-     //        }
-     //      }
-     // checkUser()
-     // }
 }
 }
 

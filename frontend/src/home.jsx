@@ -42,7 +42,6 @@ const Home = () => {
   return (
     <>
 
-      {/* <Navbar/> */}
       <div className=" w-full h-[600px] flex justify-around items-center">
         <div className="flex flex-col items-center border  border-solid border-black w-[230px] h-[500px]">
           <div className='text-[18px] font-bold'>Price Filter</div>
@@ -77,7 +76,7 @@ const Home = () => {
               <input type='radio' name='category_filter' value='Sports' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='category_filter' value='Cosmatics' onChange={(e) => { handleFilter(e) }} />
             </div>
-            <div>
+            <div className='flex flex-col gap-[0.6px]'>
               <div>All</div>
               <div>Health</div>
               <div>Clothes</div>
@@ -107,24 +106,18 @@ const Home = () => {
                 )
                 && (
 
-                  // <div className='border border-solid border-black w-[200px] h-[200px] m-[10px]' onClick={()=>{discoverDetails(ele._id)}}>
-                  //  <img src={ele.image} style={{width:'80%' , height:'80%'}} alt='image' className='mx-auto border border-solid border-black'/>
-                  //  <div>{ele.name}</div>
-                  //  <div>{ele.amt}</div>
-                  //  <div>{ele.dis}</div>
-                  //  <button onClick={addToCart}>Add To Cart</button>
-                  // </div>
-                  <div className="product-card charu bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[250px] p-[20px] my-[10px]" onClick={() => discoverDetails(ele._id)}>
+                 
+                  <div className=" text-[20px] product-card charu bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[270px] p-[20px] my-[10px] " onClick={() => discoverDetails(ele._id)}>
                     <img src={ele.image} alt="image" className="w-[150px] h-[150px]" />
-                    <div className="p-4">
-                      <h3 className="text-lg font-medium text-gray-900">{ele.name}</h3>
-                      <div className="text-gray-700 mb-2">
+                    <div>
+                      <div className="max-h-[30px] justify-content-center overflow-hidden text-font-medium text-gray-900 ">{ele.name}</div>
+                      <div className="text-gray-700">
                         <span className="font-bold">₹{ele.price}</span>
                       </div>
-                      <p className="text-sm text-gray-600 line-clamp-2">{ele.dis}</p>
-                      {/* <button className="mt-2 py-2 px-4 bg-blue-500 text-white font-medium rounded shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                        Add To Cart
-                      </button> */}
+                      <div className='flex flex-row'>
+ <span className="max-h-[30px] flex flex-row justify-content-center max-w-[220px] overflow-hidden text-gray-600">{ele.dis}</span>
+                        </div>
+                     
                     </div>
                   </div>
                 )

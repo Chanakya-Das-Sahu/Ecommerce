@@ -1,11 +1,9 @@
 import React from 'react'
 import Navbar from './navbar.jsx'
+import Account from './account.jsx'
 import Home from './home.jsx'
 import Cart from './cart.jsx'
 import Orders from './orders.jsx'
-import UploadPage from './uploadPage.jsx'
-import AdminConsole from './adminConsole.jsx'
-import UpdateProduct from './updateProduct.jsx'
 import Detail from './detail.jsx'
 import { useState , useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -48,11 +46,9 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/account' element={<Account/>}/>
             <Route path='/Cart' element={<Cart />} />
             <Route path='/Orders' element={<Orders />} />
-            <Route path='/adminConsole' element={<AdminConsole />} />
-            <Route path='/uploadPage' element={<UploadPage />} />
-            <Route path='/UpdateProduct' element={<UpdateProduct />} />
             <Route path='/detailPage' element={<Detail/>} />
           </Routes>
         </context.Provider>

@@ -3,12 +3,14 @@ import { useState } from 'react'
 import axios from 'axios'
 import { context } from './App'
 import { jwtDecode } from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: '', password: '' })
   const { setShowLoginPage , setShowLogout ,details , setDetails} = useContext(context)
   const [isEmailValid,setIsEmailValid] = useState(true)
   const [isPasswordValid,setIsPasswordValid] = useState(true)
   const [incorrectCredential,setIncorrectCredentials] = useState(false)
+  const navigate = useNavigate()
   const handleInput = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value })
   }
@@ -25,6 +27,7 @@ const Login = () => {
       setDetails({ ...details,token:res.data.token,userId: decodedToken.userId ,exp:decodedToken.exp})
       setShowLoginPage(false)
       setShowLogout(true) 
+      navigate('/')
     }
     }
   }
@@ -43,22 +46,6 @@ const validatePassword = (password) => {
 };
   return (
     <>
-
-{/*
- <div className="login-dialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] bg-white flex flex-col justify-around rounded-md shadow-md p-6 z-50 h-[400px]"> 
-  <button className="close-btn absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => setShowLoginPage(false)}>
-    &times;
-  </button>
-
-  <h2 className="text-xl font-medium mb-4 text-center">Login</h2> 
-<div className='flex flex-col gap-[20px] mb-[100px]'>
-<input type="text"  className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" name="email" onChange={(e) => handleInput(e)} placeholder="Email Address" />
-  <input type="password"  className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" name="password" onChange={(e) => handleInput(e)} placeholder="Password" />
-
-  <button onClick={handleLogin} className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Login</button>
-</div>
-  </div> 
-  */}
 
 <div className="login-dialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] bg-white flex flex-col justify-around rounded-md shadow-md p-6 z-50 h-[400px]">
   <button className="close-btn absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => setShowLoginPage(false)}>
