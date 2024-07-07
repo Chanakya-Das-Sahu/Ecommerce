@@ -12,7 +12,7 @@ router.post('/signup', async (req, res) => {
    const userExists = await user.findOne({ email })
 
    if (userExists) {
-      console.log('user exists')
+      // console.log('user exists')
       res.json({ alert: 'user exists already' })
    } else {
       const hashedPassword = await bcrypt.hash(password, 10)
@@ -54,17 +54,17 @@ router.post('/getUserDetails', Auth, async (req, res) => {
 })
 
 router.put('/updateUserDetails', Auth, async (req, res) => {
-   console.log('req.body',req.body)
+   // console.log('req.body',req.body)
    const { _id, name, email, mnumber, address } = req.body
-   console.log("_id",_id)
+   // console.log("_id",_id)
    const User = await user.findById(_id)
-   console.log('charu User',User)
+   // console.log('charu User',User)
    const updatedUser = await user.findByIdAndUpdate(
       _id,
       { $set: { name, email, mnumber, address } },
       {new:true}
    )
-   console.log('updatedUser',updatedUser)
+   // console.log('updatedUser',updatedUser)
    if(updatedUser){
       res.json({msg:'updated'})
    }
@@ -102,7 +102,7 @@ router.post('/addToCart', Auth, async (req, res) => {
 })
 
 router.post('/getCart', Auth, async (req, res) => {
-   console.log('getCart')
+   // console.log('getCart')
    const { userId } = req.body
    const Cart = await cart.findOne({ userId })
    // console.log('Cart',Cart)
@@ -143,7 +143,7 @@ router.post('/removeProductCart/:index', Auth, async (req, res) => {
 
 router.post('/updateQuantityCart', Auth, async (req, res) => {
    const { userId, ind, qty } = req.body
-   console.log('userId,ind', userId, qty)
+   // console.log('userId,ind', userId, qty)
    const Cart = await cart.findOne({ userId })
    Cart.products[ind].quantity = qty
    await Cart.save()
