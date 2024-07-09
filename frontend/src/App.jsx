@@ -10,9 +10,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { createContext } from 'react'
 const context = createContext()
 const App = () => {
+  // retrievedData is being got as undefined 
   const[details,setDetails] = useState(()=>{
    const retrievedDetails = localStorage.getItem('details')
-   if(retrievedDetails=='undefined'){
+   if(retrievedDetails=='undefined' || retrievedDetails=='null'){
     console.log('retrievedDetails something ',retrievedDetails)
     return {userId:'',productId:'',token:'',exp:''}
    }else{

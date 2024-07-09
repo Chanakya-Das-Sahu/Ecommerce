@@ -9,3 +9,7 @@
 .scroll::-webkit-scrollbar { /* WebKit browsers (Chrome, Safari, etc.) */
     display: none;
   }
+
+.error-message{
+  color:red
+}
