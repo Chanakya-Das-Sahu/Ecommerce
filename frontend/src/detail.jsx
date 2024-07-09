@@ -20,11 +20,11 @@ const Detail = () => {
             const res = await axios.post(`https://chanakya-ecom.onrender.com/api/general/checkProductInCart/${details.productId}`, {}, {
                 headers: { Authorization: details.token }
             })
-            if (res.data.alert == 'jwt expired') {
-                setShowSignupPage(true)
-                setDetails({ productId: '', userId: '', token: '' })
-                setShowLogout(false)
-            }
+            // if (res.data.alert == 'jwt expired') {
+            //     setShowSignupPage(true)
+            //     setDetails({ productId: '', userId: '', token: '' })
+            //     setShowLogout(false)
+            // }
             if (res.data.msg) {
                 setCartBool('Added To Cart')
             }
@@ -43,12 +43,12 @@ const Detail = () => {
             const res = await axios.post('https://chanakya-ecom.onrender.com/api/general/addToCart', cartData, {
                 headers: { Authorization: details.token }
             })
-            if (res.data.alert == 'jwt expired') {
-                setShowSignupPage(true)
-                setDetails({ productId: '', userId: '', token: '' })
-                setShowLogout(false)
-            }
-            // console.log('cart', res.data)
+            // if (res.data.alert == 'jwt expired') {
+            //     setShowSignupPage(true)
+            //     setDetails({ productId: '', userId: '', token: '' })
+            //     setShowLogout(false)
+            // }
+            // // console.log('cart', res.data)
             setCartBool('Added To Cart')
         } else {
             setShowSignupPage(true)

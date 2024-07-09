@@ -14,16 +14,16 @@ const App = () => {
   const[details,setDetails] = useState(()=>{
    const retrievedDetails = localStorage.getItem('details')
    if(retrievedDetails=='undefined' || retrievedDetails=='null'){
-    console.log('retrievedDetails something ',retrievedDetails)
+    // console.log('retrievedDetails something ',retrievedDetails)
     return {userId:'',productId:'',token:'',exp:''}
    }else{
-    console.log('retrievedDetails undefined',retrievedDetails)
+    // console.log('retrievedDetails undefined',retrievedDetails)
       return JSON.parse(retrievedDetails)
    }
   })
 
    useEffect(()=>{
-    console.log('details useFfect',details)
+    // console.log('details useFfect',details)
       localStorage.setItem('details',JSON.stringify(details))
    },[details])
 

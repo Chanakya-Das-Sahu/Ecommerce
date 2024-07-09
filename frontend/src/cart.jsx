@@ -88,11 +88,10 @@ const Cart = () => {
 
     return (
         <>
-            {details.userId == '' && <h1>Please open account to explore your cart</h1>}
-            {products.length > 0 ?
+            {products.length>0?
                 (
                     products.map((ele, ind) => (
-                        <div className='w-auto h-[160px] flex flex-row items-center justify-around m-[10px] rounded-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}>
+                        <div key={ind} className='w-auto h-[160px] flex flex-row items-center justify-around m-[10px] rounded-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}>
                             <div className=' h-[150px] w-[150px]'><img src={ele.image} style={{ width: '100%', height: '100%' }} /></div>
                             <div className=' h-[150px] w-[340px] flex flex-row items-center overflow-x-auto overflow-y-hidden'>
                                 {products[ind].images.length > 0 &&
@@ -122,9 +121,10 @@ const Cart = () => {
                     )
 
                 ) :
-                (
-                    <h1>No Products</h1>
-
+                ( details.userId!==''?
+                <h1>Loading...</h1>
+                 :
+                <h1>Please ! get into your account to explore Cart.</h1>
                 )
             }
         </>

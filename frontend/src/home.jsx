@@ -46,7 +46,7 @@ const Home = () => {
         <div className="flex flex-col items-center border  border-solid border-black w-[230px] h-[500px]">
           <div className='text-[18px] font-bold'>Price Filter</div>
           <div className=' flex flex-rows  justify-around w-[120px]'>
-            <div className='w-[20px] h-[100px]'>
+            <div className='w-[20px] h-[100px] flex flex-col gap-[3.5px]'>
               <input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='price_filter' value='1-100' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='price_filter' value='100-500' onChange={(e) => { handleFilter(e) }} />
@@ -73,10 +73,11 @@ const Home = () => {
               <input type='radio' name='category_filter' value='Health' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='category_filter' value='Clothes' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='category_filter' value='Accessaries' onChange={(e) => { handleFilter(e) }} />
+              <input type='radio' name='category_filter' value='Grocessary' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='category_filter' value='Sports' onChange={(e) => { handleFilter(e) }} />
               <input type='radio' name='category_filter' value='Cosmatics' onChange={(e) => { handleFilter(e) }} />
             </div>
-            <div className='flex flex-col gap-[0.6px]'>
+            <div className='flex flex-col gap-[0.7px]'>
               <div>All</div>
               <div>Health</div>
               <div>Clothes</div>
@@ -89,12 +90,12 @@ const Home = () => {
         </div>
 
 
-        <div className="charu w-[900px] h-[500px] flex flex-row flex-wrap justify-between overflow-auto scroll p-[15px]">
+        <div className="charu w-[900px] h-[500px] flex flex-row flex-wrap justify-first gap-[20px] overflow-auto scroll p-[15px]">
 
 
           {products.length > 0 ?
             (
-              products.map((ele) => (
+              products.map((ele,ind) => (
 
                 (
                   (filters.category_filter == 'All' || ele.cat == filters.category_filter) &&
@@ -107,7 +108,7 @@ const Home = () => {
                 && (
 
                  
-                  <div className=" text-[20px] product-card charu bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[270px] p-[20px] my-[10px] " onClick={() => discoverDetails(ele._id)}>
+                  <div key={ind} className=" text-[20px] product-card charu bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[270px] p-[20px] my-[10px] " onClick={() => discoverDetails(ele._id)}>
                     <img src={ele.image} alt="image" className="w-[150px] h-[150px]" />
                     <div>
                       <div className="max-h-[30px] justify-content-center overflow-hidden text-font-medium text-gray-900 ">{ele.name}</div>
@@ -127,7 +128,7 @@ const Home = () => {
               ))
             ) :
             (
-              <h2>Hello</h2>
+              <h2>Loading...</h2>
             )
           }
 
