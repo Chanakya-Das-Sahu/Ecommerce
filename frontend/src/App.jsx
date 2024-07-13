@@ -13,7 +13,7 @@ const App = () => {
   // retrievedData is being got as undefined 
   const[details,setDetails] = useState(()=>{
    const retrievedDetails = localStorage.getItem('details')
-   if(retrievedDetails=='undefined' || retrievedDetails=='null'){
+   if(retrievedDetails=='undefined' || retrievedDetails=='null' || retrievedDetails==null || retrievedDetails==undefined ){
     // console.log('retrievedDetails something ',retrievedDetails)
     return {userId:'',productId:'',token:'',exp:''}
    }else{
