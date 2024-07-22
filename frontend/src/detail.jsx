@@ -11,13 +11,13 @@ const Detail = () => {
 
         const getData = async () => {
             // console.log('details', details)
-            const res = await axios.get(`https://chanakya-ecom.onrender.com/api/general/getProduct/${details.productId}`)
+            const res = await axios.get(`http://localhost:3000/api/general/getProduct/${details.productId}`)
             // console.log('detail', res)
             setProduct(res.data)
         }
 
         const checkProductInCart = async () => {
-            const res = await axios.post(`https://chanakya-ecom.onrender.com/api/general/checkProductInCart/${details.productId}`, {}, {
+            const res = await axios.post(`http://localhost:3000/api/general/checkProductInCart/${details.productId}`, {}, {
                 headers: { Authorization: details.token }
             })
             // if (res.data.alert == 'jwt expired') {
@@ -40,7 +40,7 @@ const Detail = () => {
         if (details.userId != '') {
             const cartData = { productId: details.productId, qty: '1' }
 
-            const res = await axios.post('https://chanakya-ecom.onrender.com/api/general/addToCart', cartData, {
+            const res = await axios.post('http://localhost:3000/api/general/addToCart', cartData, {
                 headers: { Authorization: details.token }
             })
             // if (res.data.alert == 'jwt expired') {

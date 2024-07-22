@@ -8,7 +8,7 @@
 //     useEffect(() => {
 
 //         const getDetails = async () => {
-//             const res = await axios.post(`https://chanakya-ecom.onrender.com/api/general/getUserDetails`, {}, {
+//             const res = await axios.post(`http://localhost:3000/api/general/getUserDetails`, {}, {
 //                 headers: { Authorization: details.token }
 //             })
 //             if(res.data.User){
@@ -35,7 +35,7 @@
 //     const updateDetails = async () =>{
 //         const notEmpty = Object.values(userDetails).every(value=>value!=='')
 //        if(notEmpty){
-//        const res = await axios.put('https://chanakya-ecom.onrender.com/api/general/updateUserDetails',userDetails,{
+//        const res = await axios.put('http://localhost:3000/api/general/updateUserDetails',userDetails,{
 //         headers:{Authorization:details.token}
 //        })
 //        }
@@ -90,7 +90,7 @@ const Account = () => {
     useEffect(() => {
         const getDetails = async () => {
             const res = await axios.post(
-                `https://chanakya-ecom.onrender.com/api/general/getUserDetails`,
+                `http://localhost:3000/api/general/getUserDetails`,
                 {},
                 {
                     headers: { Authorization: details.token },
@@ -183,7 +183,7 @@ const Account = () => {
     const updateDetails = async () => {
         console.log('errors',errors)
          if( (errors.name==='' || userDetails.name!=='') && (errors.mnumber==='' || userDetails.mnumber!=='') && (errors.address==='' || userDetails.address!=='') &&  (errors.email==='' ||  userDetails!=='') ){
-            const res = await axios.put('https://chanakya-ecom.onrender.com/api/general/updateUserDetails',userDetails,{
+            const res = await axios.put('http://localhost:3000/api/general/updateUserDetails',userDetails,{
                 headers:{Authorization:details.token}
             })
             console.log('updateDetails res : ',res)
@@ -196,7 +196,7 @@ const Account = () => {
 
         //     if (Object.keys(errors).length === 0) { // Check if there are no errors
         //         const res = await axios.put(
-        //             'https://chanakya-ecom.onrender.com/api/general/updateUserDetails',
+        //             'http://localhost:3000/api/general/updateUserDetails',
         //             userDetails,
         //             {
         //                 headers: { Authorization: details.token },
