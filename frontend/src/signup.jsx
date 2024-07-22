@@ -17,7 +17,7 @@ const Signup = () =>{
 
   const handleSignup = async () =>{
  if(isEmailValid && isPasswordValid){
-  const res = await axios.post('http://localhost:3000/api/general/signup',userDetails)
+  const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/signup',userDetails)
   // console.log('res signup',res)
   if(res.data.alert='user exists already'){
     setExists(true)  

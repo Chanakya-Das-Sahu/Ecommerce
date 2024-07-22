@@ -20,8 +20,8 @@ const App = () => {
 
    }else{
     // console.log('retrievedDetails undefined',retrievedDetails)
-
-      return JSON.parse(retrievedDetails)
+// return {userId:'',productId:'',token:'',exp:''}
+    return JSON.parse(retrievedDetails)
    }
   })
 
