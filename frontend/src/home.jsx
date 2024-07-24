@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { context } from './App.jsx'
 import { useContext } from 'react';
+import Loading from './loading.gif'
 const Home = () => {
   const [products, setProducts] = useState([])
   const [filters, setFilters] = useState({ price_filter: 'All', category_filter: 'All' })
@@ -128,7 +129,7 @@ const Home = () => {
               ))
             ) :
             (
-              <h2>Loading...</h2>
+              <img src={Loading} width='300px' className='m-auto'/>
             )
           }
 

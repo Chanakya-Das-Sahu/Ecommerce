@@ -75,6 +75,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { context } from './App';
 import axios from 'axios';
+import Loading from './loading.gif'
 const Account = () => {
     // const [userDetails, setUserDetails] = useState({
     //     name: '',
@@ -264,8 +265,8 @@ const Account = () => {
 
           </>
         ) : (
-            <h1>Loading...</h1>
-        )}
+       <img src={Loading} width='300px' className='m-auto'/>
+)}
 
   
       </div>

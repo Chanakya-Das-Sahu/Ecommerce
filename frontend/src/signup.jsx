@@ -4,12 +4,14 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { context } from './App'
 import { useContext } from 'react'
+import Loading from './loading.gif'
 const Signup = () =>{
   const[userDetails,setUserDetails] = useState({email:'',password:''})
    const { setShowSignupPage,showSignupPage , setShowLoginPage} = useContext(context)
    const [isEmailValid,setIsEmailValid] = useState(true)
    const [isPasswordValid,setIsPasswordValid] = useState(true)
    const [exists,setExists] = useState(false)
+   const[loading,setLoading] = useState(false)
   const navigate = useNavigate()
   const handleInput = (e) =>{
     setUserDetails({...userDetails,[e.target.name]:e.target.value})
@@ -17,10 +19,14 @@ const Signup = () =>{
 
   const handleSignup = async () =>{
  if(isEmailValid && isPasswordValid){
+  setLoading(true)
   const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/signup',userDetails)
   // console.log('res signup',res)
   if(res.data.alert='user exists already'){
     setExists(true)  
+  }
+  if(res.data){
+    setLoading(false)
   }
 
  
@@ -86,13 +92,19 @@ const validatePassword = (password) => {
   ):
    null
    }
-    <button
+
+   {loading ?
+   <img src={Loading} width='100px' className='m-auto'/>
+   :
+ <button
       onClick={handleSignup}
       className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       disabled={!isEmailValid || !isPasswordValid} 
     >
       Signup
     </button>
+   }
+   
 
    <button onClick={()=>{setShowLoginPage(true);setShowSignupPage(false)}}><u>Login</u></button>
   </div>

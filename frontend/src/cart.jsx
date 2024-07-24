@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { context } from './App'
+import Loading from './loading.gif'
 const Cart = () => {
     const { details, setDetails, setShowSignupPage , setShowLogout   } = useContext(context)
     const [products, setProducts] = useState([])
@@ -122,7 +123,7 @@ const Cart = () => {
 
                 ) :
                 ( details.userId!==''?
-                <h1>Loading...</h1>
+                <img src={Loading} width='300px' className='m-auto'/>
                  :
                 <h1>Please ! get into your account to explore Cart.</h1>
                 )

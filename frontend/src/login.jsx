@@ -4,7 +4,9 @@ import axios from 'axios'
 import { context } from './App'
 import { jwtDecode } from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
+import Loading from './loading.gif'
 const Login = () => {
+  const[loading,setLoading] = useState(false)
   const [userDetails, setUserDetails] = useState({ email: '', password: '' })
   const { setShowLoginPage , setShowLogout ,details , setDetails} = useContext(context)
   const [isEmailValid,setIsEmailValid] = useState(true)
@@ -17,8 +19,9 @@ const Login = () => {
 
   const handleLogin = async () => {
     if(isEmailValid && isPasswordValid){
+      setLoading(true)
        const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/login', userDetails)
-    // console.log('res login',res)
+    console.log('res login',res)
     if(res.data.alert=='incorrect credentials'){
       setIncorrectCredentials(true)
     }
@@ -28,6 +31,10 @@ const Login = () => {
       setShowLoginPage(false)
       setShowLogout(true) 
       navigate('/')
+    }
+
+    if(res.data){
+      setLoading(false)
     }
     }
   }
@@ -82,13 +89,22 @@ const validatePassword = (password) => {
     <span className='text-red-500'>Incorrect Credentials</span>
    ):null
    }
-    <button
+    
+{loading ?
+<img src={Loading} width='100px' className='mx-auto'/>
+:
+   <button
       onClick={handleLogin}
       className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       disabled={!isEmailValid || !isPasswordValid} 
     >
       Login
     </button>
+
+}
+   
+
+
   </div>
 </div>
 
