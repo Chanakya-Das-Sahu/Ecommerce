@@ -97,7 +97,7 @@ const Account = () => {
                     headers: { Authorization: details.token },
                 }
             );
-
+              console.log('res',res)
             if (res.data.User) {
                 setUserDetails(res.data.User);
             }
@@ -211,15 +211,15 @@ const Account = () => {
 
     return (
         <>
-            <div className='container p-[20px] '>
+            <div className='container px-[420px] py-[50px] bg-[#f9abaf]'>
               
                 {userDetails !== '' ? (
                     <>
-                        <div className='charu w-[400px] h-[500px] flex flex-col gap-[20px] mx-auto px-[50px]'>
+                        <div className='charu text-black p-[20px] text-[20px] px-[20px] flex flex-col gap-[20px] mx-auto px-[50px] bg-[#2e4964]'>
                             <span className='text-center'><b>Details</b></span>
-                            <lable>Name : </lable>
+                            <lable className='text-white'>Name : </lable>
                             <input
-                                className='charu'
+                                className='charu px-[10px]'
                                 onChange={handleInput}
                                 placeholder='Enter Your Name : '
                                 name='name'
@@ -227,9 +227,9 @@ const Account = () => {
                                 aria-describedby="name-error"  
                             />
                             {errors.name && <span id="name-error" className="error-message">{errors.name}</span>}   
-                            <lable>email : </lable>
+                            <lable className='text-white'>Email : </lable>
                             <input
-                                className='charu'
+                                className='charu px-[10px]'
                                 onChange={handleInput}
                                 placeholder='Enter You Email : '
                                 name='email'
@@ -237,9 +237,9 @@ const Account = () => {
                                 aria-describedby="email-error"  
                             />
                             {errors.email && <span id="email-error" className="error-message">{errors.email}</span>}  
-                            <lable>mnumber : </lable>
+                            <lable className='text-white'>Mobile Number : </lable>
                             <input
-                                className='charu'
+                                className='charu px-[10px]'
                                 onChange={handleInput}
                                 placeholder='Enter You Number : '
                                 name='mnumber'
@@ -247,9 +247,9 @@ const Account = () => {
                                 aria-describedby="mnumber-error"  
                             />
                             {errors.mnumber && <span id="mnumber-error" className="error-message">{errors.mnumber}</span>} 
-                            <lable>Name : </lable>
+                            <lable className='text-white'>Address : </lable>
                             <input
-                                className='charu h-[100px] flex flex-row justify:start '
+                                className='charu  px-[10px] h-[100px] flex flex-row justify:start '
                                 onChange={handleInput}
                                 placeholder='Enter You Address : '
                                 name='address'
@@ -257,7 +257,7 @@ const Account = () => {
                                 aria-describedby="address-error"  
                             />
                             {errors.address && <span id="address-error" className="error-message">{errors.address}</span>} 
-                            <button onClick={updateDetails} className='charu'>
+                            <button onClick={updateDetails} className='charu bg-[#f9abaf]'>
                                 Update Details
                             </button>
                         </div>
@@ -265,7 +265,7 @@ const Account = () => {
 
           </>
         ) : (
-       <img src={Loading} width='300px' className='m-auto'/>
+       <img src={Loading} width='300px' className='mx-auto my-[300px]'/>
 )}
 
   

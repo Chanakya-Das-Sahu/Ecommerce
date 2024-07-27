@@ -43,8 +43,8 @@ const Home = () => {
   return (
     <>
 
-      <div className=" w-full h-[600px] flex justify-around items-center">
-        <div className="flex flex-col items-center border  border-solid border-black w-[230px] h-[500px]">
+      <div className=" w-full h-[600px] flex justify-around items-center bg-[#f9abaf]">
+        <div className="flex flex-col justify-center items-center border-r-[1px] border-solid border-black w-[230px] h-[500px]">
           <div className='text-[18px] font-bold'>Price Filter</div>
           <div className=' flex flex-rows  justify-around w-[120px]'>
             <div className='w-[20px] h-[100px] flex flex-col gap-[3.5px]'>
@@ -91,7 +91,7 @@ const Home = () => {
         </div>
 
 
-        <div className="charu w-[900px] h-[500px] flex flex-row flex-wrap justify-first gap-[20px] overflow-auto scroll p-[15px]">
+        <div className="w-[900px] h-[500px] flex flex-row flex-wrap justify-first gap-[20px] overflow-auto scroll p-[15px]">
 
 
           {products.length > 0 ?

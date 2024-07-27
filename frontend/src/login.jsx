@@ -64,7 +64,7 @@ const validatePassword = (password) => {
   <div className="flex flex-col gap-[20px] mb-[100px]">
     <input
       type="text"
-      className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       name="email"
       onChange={(e) => handleInput(e)}
       placeholder="Email Address"
@@ -76,7 +76,7 @@ const validatePassword = (password) => {
 
     <input
       type="password"
-      className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       name="password"
       onChange={(e) => handleInput(e)}
       placeholder="Password"
@@ -95,7 +95,8 @@ const validatePassword = (password) => {
 :
    <button
       onClick={handleLogin}
-      className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      // className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      className='text-white text-center rounded-md bg-blue-700 hover:bg-blue-500'
       disabled={!isEmailValid || !isPasswordValid} 
     >
       Login

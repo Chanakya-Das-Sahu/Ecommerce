@@ -65,9 +65,10 @@ const validatePassword = (password) => {
   <div className="flex flex-col gap-[20px] mb-[100px]">
     <input
       type="text"
-      className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       name="email"
       onChange={(e) => handleInput(e)}
+      value={userDetails.email}
       placeholder="Email Address"
       onBlur={(e) => validateEmail(e.target.value)} 
     />
@@ -77,9 +78,10 @@ const validatePassword = (password) => {
 
     <input
       type="password"
-      className="login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       name="password"
       onChange={(e) => handleInput(e)}
+      value={userDetails.password}
       placeholder="Password"
       onBlur={(e) => validatePassword(e.target.value)} 
     />
@@ -98,7 +100,8 @@ const validatePassword = (password) => {
    :
  <button
       onClick={handleSignup}
-      className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      // className="text-center  w-full h-10 bg-blue-500 font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      className='text-center text-white bg-blue-700 hover:bg-blue-500 rounded-md'
       disabled={!isEmailValid || !isPasswordValid} 
     >
       Signup
@@ -106,7 +109,7 @@ const validatePassword = (password) => {
    }
    
 
-   <button onClick={()=>{setShowLoginPage(true);setShowSignupPage(false)}}><u>Login</u></button>
+   <button onClick={()=>{setShowLoginPage(true);setShowSignupPage(false)}} className='text-black'><u>Login</u></button>
   </div>
 </div>
 

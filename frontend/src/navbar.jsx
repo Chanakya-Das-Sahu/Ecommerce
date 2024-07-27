@@ -22,7 +22,7 @@ const Navbar = () => {
         navigate('/')
     }
     return (
-        <nav className='border border-solid border-black flex justify-around items-center h-[50px] text-[15px] text-bold'>
+        <nav className='border border-solid border-black flex justify-around items-center h-[50px] text-[20px] text-white text-bold bg-[#2e4964]'>
             <div className=''><Link to='/'>Home</Link></div>
             <div className=''><Link to='/Cart'>Cart</Link></div>
             <div className=''><Link to='/Orders'>Orders</Link></div>
