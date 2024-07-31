@@ -70,14 +70,14 @@ const Detail = () => {
 
     return (
         <>
-            <div className=" charu product-details px-10 py-[30px] bg-[#f9abaf] range:flex range:justify-center range">
+            <div className="  product-details px-10 py-[30px] bg-[#f9abaf] range:flex range:justify-center range">
                 {loading ?
                     (
                         <img src={Loading} width='200px' className='m-auto my-[200px]' />
                     ) :
                     (
                         <>
-                            <div className="charu">
+                            <div className="">
                                 <div className="flex flex-row items-center justify-around flex-wrap gap-[50px]">
                                     <div className="overflow-hidden rounded-lg">
                                         <img
@@ -116,7 +116,7 @@ const Detail = () => {
 
                                             <button
                                                 onClick={addToCart}
-                                                className="h-[50px] text-center px-[10px] bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                className="h-auto text-center px-[10px] bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                                             >{cartBool}
                                             </button>
 
@@ -134,7 +134,7 @@ const Detail = () => {
                                                      <br/>                   
 
                                      {product.images && (
-                                        <div className='charu h-[400px] w-full flex justify-around gap-[20px] p-[20px] overflow-x-auto scroll'>
+                                        <div className=' h-[400px] w-full flex justify-around gap-[20px] p-[20px] overflow-x-auto scroll'>
                                         {product.images.map((ele) => (
                                             <img
                                                 key={ele}

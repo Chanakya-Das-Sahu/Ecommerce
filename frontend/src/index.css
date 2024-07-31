@@ -33,3 +33,14 @@
 .error-message{
   color:red
 }
+
+
+@media (min-width:0px) and (max-width:480px) {
+    .flexRow{
+      width:100%;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      gap:30px;
+    }
+}

@@ -215,7 +215,7 @@ const Account = () => {
               
                 {userDetails !== '' ? (
                     <>
-                        <div className='max-w-full m-auto text-black text-[20px] px-[50px] py-[10px] flex flex-col gap-[20px] bg-[#2e4964]'>
+                        <div className='max-w-full mx-auto my-[20px] text-black text-[20px] px-[50px] py-[10px] flex flex-col gap-[15px] bg-[#2e4964]'>
                             <span className='text-center'><b>Details</b></span>
                             <lable className='text-white'>Name : </lable>
                             <input

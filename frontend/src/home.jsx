@@ -15,7 +15,6 @@ const Home = () => {
 
     const getData = async () => {
       const res = await axios.get('https://ecommerce-ashy-ten.vercel.app/api/general/getProducts')
-      // console.log('res', res)
       if (res) {
         setProducts(res.data.products)
       }
@@ -44,7 +43,7 @@ const Home = () => {
   return (
     <>
 
-      <div className="w-full h-[91.5vh] py-[-10px] flex justify-around items-center bg-[#f9abaf] charu">
+      <div className="w-full h-[100vh] py-[-10px] flex justify-around items-center bg-[#f9abaf]">
         <div className="range:hidden flex flex-col justify-center items-center border-r-[1px] border-solid border-white w-[230px] h-[500px]">
           <div className='text-[18px] font-bold'>Price Filter</div>
           <div className='flex justify-around'>
@@ -102,8 +101,7 @@ const Home = () => {
             </div>
         </div>
 }
-
-        <div className="w-[900px] h-[500px] flex flex-row justify-around flex-wrap justify-first gap-[20px] overflow-auto scroll p-[15px]">
+        <div className="w-[900px] h-[500px]  flex flex-row flex-wrap justify-around justify-first  overflow-auto scroll px-[20px]">
 
 
           {products.length > 0 ?
@@ -120,8 +118,7 @@ const Home = () => {
                 )
                 && (
 
-                 
-                  <div key={ind} className=" text-[20px] product-card charu bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[270px] p-[20px] my-[10px] " onClick={() => discoverDetails(ele._id)}>
+                  <div key={ind} className="text-[20px] product-card bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
                     <img src={ele.image} alt="image" className="w-[150px] h-[150px]" />
                     <div>
                       <div className="max-h-[30px] justify-content-center overflow-hidden text-font-medium text-gray-900 ">{ele.name}</div>

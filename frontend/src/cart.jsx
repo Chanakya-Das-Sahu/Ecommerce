@@ -95,8 +95,9 @@ const Cart = () => {
             {products.length>0?
                 (
                     products.map((ele, ind) => (
-                        <div key={ind} className='text-[15px] w-auto h-[160px] flex flex-row items-center justify-around m-[10px] rounded-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}>
-                            <div className='charu w-[15rem]'><img src={ele.image} style={{ width: '100%', height: '100%' }} /></div>
+                        <div key={ind} className='text-[15px] w-auto flex flex-row items-center justify-around m-[10px] rounded-[10px] py-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}>
+                            {/* <div className='border border-solid border-gray rounded-[10px] w-[15rem] py-[10px]'><img src={ele.image}  style={{ width: '100%', height: '100%' }} /></div> */}
+                            <img src={ele.image} width='140px' className='border border-solid border-[gray] rounded-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}/>
                             {/* <div className=' h-[150px] w-[340px] flex flex-row items-center overflow-x-auto overflow-y-hidden'>
                                 {products[ind].images.length > 0 &&
 
