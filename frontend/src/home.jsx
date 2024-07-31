@@ -102,7 +102,7 @@ const Home = () => {
         </div>
 }
 {/* w-[900px] h-[500px] */}
-        <div className="flex flex-row flex-wrap justify-around justify-first  overflow-auto scroll px-[20px]">
+        <div className="charu h-[100vh] w-full flex flex-row flex-wrap justify-around justify-first overflow-auto scroll px-[20px]">
 
 
           {products.length > 0 ?
