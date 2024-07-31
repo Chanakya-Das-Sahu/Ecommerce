@@ -90,7 +90,7 @@ const Cart = () => {
 
     return (
         <>
-        <div className='bg-[#f9abaf] my-[0px] h-[100vh] charu'>
+        <div className='bg-[#f9abaf] h-[100vh] charu'>
 
             {products.length>0?
                 (

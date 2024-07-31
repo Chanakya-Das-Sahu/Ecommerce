@@ -78,13 +78,13 @@ const Detail = () => {
                     (
                         <>
                             <div className="">
-                                <div className="flex flex-row items-center justify-around flex-wrap gap-[50px]">
+                                <div className=" flex items-center justify-center flex-wrap gap-[50px]">
                                     <div className="overflow-hidden rounded-lg">
                                         <img
                                             src={product.image}
                                             alt="Product photo"
                                             width='450rem'
-                                            className="object-cover m-[30px]"
+                                            className="object-cover"
                                         />
                                     </div>
 
@@ -134,7 +134,7 @@ const Detail = () => {
                                                      <br/>                   
 
                                      {product.images && (
-                                        <div className=' h-[400px] w-full flex justify-around gap-[20px] p-[20px] overflow-x-auto scroll'>
+                                        <div className=' h-[400px] w-full flex justify-start gap-[20px] p-[20px] overflow-x-auto scroll'>
                                         {product.images.map((ele) => (
                                             <img
                                                 key={ele}
