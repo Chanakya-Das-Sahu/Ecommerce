@@ -90,14 +90,14 @@ const Cart = () => {
 
     return (
         <>
-        <div className='bg-[#f9abaf] my-[0px] h-[550px] charu'>
+        <div className='bg-[#f9abaf] my-[0px] h-[100vh] charu'>
 
             {products.length>0?
                 (
                     products.map((ele, ind) => (
                         <div key={ind} className='text-[15px] w-auto h-[160px] flex flex-row items-center justify-around m-[10px] rounded-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}>
-                            <div className=' h-[150px] w-[150px]'><img src={ele.image} style={{ width: '100%', height: '100%' }} /></div>
-                            <div className=' h-[150px] w-[340px] flex flex-row items-center overflow-x-auto overflow-y-hidden'>
+                            <div className='charu w-[15rem]'><img src={ele.image} style={{ width: '100%', height: '100%' }} /></div>
+                            {/* <div className=' h-[150px] w-[340px] flex flex-row items-center overflow-x-auto overflow-y-hidden'>
                                 {products[ind].images.length > 0 &&
 
                                     products[ind].images.map((link) => (
@@ -107,16 +107,16 @@ const Cart = () => {
                                     ))
 
                                 }
-                            </div>
-                            <div className=' h-[150px] w-[150px]' name="name" >{ele.name}</div>
-                            <div className=' h-[150px] w-[150px]' name="dis" >{ele.dis}</div>
-                            <div className='  h-[20px] w-[50px]' name="price" >₹ {ele.price}</div>
-                            {/* <div className='charu h-[20px] w-[50px]' name="cat" >{ele.cat}</div> */}
-                            <div className='flex flex-row   '>
+                            </div> */}
+                            <div className='h-[150px] w-[50px] flex flex-col gap-[20px] justify-center' name="name" ><div>{ele.name}</div><div>₹ {ele.price}</div><div className='flex flex-row   '>
                                 <button className=' px-[4px]' onClick={() => { DEC(ind) }}>-</button>
                                 <div className=' h-[20px] w-[20px] flex justify-center items-center' name="qty" >{qty[ind].quantity}</div>
                                 <button className=' px-[4px]' onClick={() => INC(ind)}>+</button>
-                            </div>
+                            </div></div>
+                            {/* <div className=' h-[150px] w-[150px]' name="dis" >{ele.dis}</div> */}
+                            {/* <div className='charu  h-[20px] w-[50px]' name="price" ></div> */}
+                            {/* <div className='charu h-[20px] w-[50px]' name="cat" >{ele.cat}</div> */}
+                            
                             <button onClick={() => { orderProduct(ele._id) }} className='bg-[#13b754] px-[10px] py-[5px] text-white rounded-[10px]'>Purchase</button>
                             <button onClick={() => { removeProductCart(ind) }} className='bg-[#de3163] px-[10px] py-[5px] text-white rounded-[10px]'>delete</button>
                         </div>

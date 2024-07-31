@@ -6,9 +6,29 @@
     border:1px solid black;
 }
 
+*{
+  padding:0;
+  margin:0;
+  border:border-box;
+}
+
 .scroll::-webkit-scrollbar { /* WebKit browsers (Chrome, Safari, etc.) */
     display: none;
   }
+
+.price-container div{
+  font-size: 20px;
+  color:#6b2f2f;
+  display:flex;
+  /* justify-content: start; */
+  gap:10px;
+}
+
+.price-container div div{
+  width:auto;
+  display:flex;
+  align-items: center;
+}
 
 .error-message{
   color:red

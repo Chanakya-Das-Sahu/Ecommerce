@@ -33,7 +33,7 @@ const App = () => {
   const [showLoginPage, setShowLoginPage] = useState(false)
   const [showSignupPage, setShowSignupPage] = useState(false)
   const [showLogout, setShowLogout] = useState(false)
-
+  const [showFilter,setShowFilter] = useState(false)
   return (
     <>
       <BrowserRouter>
@@ -45,7 +45,9 @@ const App = () => {
           showSignupPage,
           setShowSignupPage,
           showLogout,
-          setShowLogout
+          setShowLogout,
+          showFilter,
+          setShowFilter
         }}>
           <Navbar />
           <Routes>

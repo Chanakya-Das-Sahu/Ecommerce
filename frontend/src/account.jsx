@@ -211,11 +211,11 @@ const Account = () => {
 
     return (
         <>
-            <div className='container px-[420px] py-[50px] bg-[#f9abaf]'>
+            <div className='flex justify-center bg-[#f9abaf] h-[100vh]'>
               
                 {userDetails !== '' ? (
                     <>
-                        <div className='charu text-black p-[20px] text-[20px] px-[20px] flex flex-col gap-[20px] mx-auto px-[50px] bg-[#2e4964]'>
+                        <div className='max-w-full m-auto text-black text-[20px] px-[50px] py-[10px] flex flex-col gap-[20px] bg-[#2e4964]'>
                             <span className='text-center'><b>Details</b></span>
                             <lable className='text-white'>Name : </lable>
                             <input
