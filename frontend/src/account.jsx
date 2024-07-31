@@ -99,7 +99,7 @@ const Account = () => {
             );
               console.log('res',res)
             if (res.data.User) {
-                setUserDetails(res.data.User);
+                // setUserDetails(res.data.User);
             }
 
             if (res.data.alert === 'jwt expired') {
@@ -265,7 +265,7 @@ const Account = () => {
 
           </>
         ) : (
-       <img src={Loading} width='300px' className='mx-auto my-[300px]'/>
+       <img src={Loading} width='300px' height='200px' className='m-auto'/>
 )}
 
   
