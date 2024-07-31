@@ -6,13 +6,21 @@ const Cart = () => {
     const { details, setDetails, setShowSignupPage , setShowLogout   } = useContext(context)
     const [products, setProducts] = useState([])
     const [qty, setQty] = useState()
+    const[loading,setLoading] = useState(true)
     const getData = async () => {
         // console.log('details cart ', details.token)
+        setLoading(true)
         const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/getCart', {}, {
             headers: { Authorization: details.token }
         })
 
-        // console.log('res getData', res)
+        console.log('res getData', res)
+
+        if(res.data){
+         setLoading(false)
+         console.log('setLoading(false)')
+        }
+
         if (res.data.msg == 'available') {
             setProducts(res.data.products)
             setQty(res.data.quantities)
@@ -34,6 +42,7 @@ const Cart = () => {
     }, [])
 
     const removeProductCart = async (ind) => {
+        setLoading(true)
         const res = await axios.post(`https://ecommerce-ashy-ten.vercel.app/api/general/removeProductCart/${ind}`, {}, {
             headers: { Authorization: details.token }
         })
@@ -90,11 +99,13 @@ const Cart = () => {
 
     return (
         <>
-        <div className='bg-[#f9abaf] h-[100vh] charu'>
+        <div className='bg-[#f9abaf] h-[100vh] charu overflow-auto scroll py-[10px]'>
 
-            {products.length>0?
+            {!loading?
+              
+                (products.length>0 ?
                 (
-                    products.map((ele, ind) => (
+                    products.map((ele, ind) =>(
                         <div key={ind} className='text-[15px] w-auto flex flex-row items-center justify-around m-[10px] rounded-[10px] py-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}>
                             {/* <div className='border border-solid border-gray rounded-[10px] w-[15rem] py-[10px]'><img src={ele.image}  style={{ width: '100%', height: '100%' }} /></div> */}
                             <img src={ele.image} width='140px' className='border border-solid border-[gray] rounded-[10px]' style={{ boxShadow: 'gray 2px 2px 7px 1px' }}/>
@@ -124,7 +135,8 @@ const Cart = () => {
 
                     )
                     )
-
+                ):
+               <h1 className='text-[20px] flex justify-center items-center h-[100vh]'>No Item in Cart</h1> 
                 ) :
                 ( details.userId ?
                 <img src={Loading} width='300px' className='mx-auto'/>

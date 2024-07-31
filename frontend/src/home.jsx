@@ -119,7 +119,7 @@ const Home = () => {
                 )
                 && (
 
-                  <div key={ind} className="text-[20px] product-card bg-gray-100 shadow-md rounded cursor-pointer hover:bg-gray-200 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
+                  <div key={ind} className=" rounded-[10px] text-[20px] product-card bg-[#f9abaf] shadow-md rounded cursor-pointer transform transition-transform duration:300 hover:scale-110 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
                     <img src={ele.image} alt="image" className="w-[150px] h-[150px]" />
                     <div>
                       <div className="max-h-[30px] justify-content-center overflow-hidden text-font-medium text-gray-900 ">{ele.name}</div>
