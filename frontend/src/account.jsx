@@ -99,7 +99,7 @@ const Account = () => {
             );
               console.log('res',res)
             if (res.data.User) {
-                // setUserDetails(res.data.User);
+                setUserDetails(res.data.User);
             }
 
             if (res.data.alert === 'jwt expired') {
