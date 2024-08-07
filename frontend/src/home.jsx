@@ -73,8 +73,8 @@ const Home = () => {
 <h1>{showFilter}</h1>
         {showFilter &&
 
-        <div className="absolute left-[0px] top-[0px] px-[20px] h-[100vh] bg-[#f9abaf] flex flex-col justify-center items-center border-r-[1px] border-solid border-white">
-            <div className='self-end' onClick={()=>{setShowFilter(false)}}><img src={Cross} width='30px' /></div>
+        <div className="absolute rounded-[6px] bg-[#2e4964] z-10 left-[0px] top-[0px] px-[20px] py-[20px] text-[white] flex flex-col" style={{boxShadow:'1px 1px 30px 1px gray'}}>
+            <div className='self-end border ' onClick={()=>{setShowFilter(false)}}><img src={Cross} width='30px' className='border-r-[5px] border-white'/></div>
           <div className='text-[18px] font-bold'>Price Filter</div>
           <div className='flex justify-around'>
             <div className='price-container flex flex-col pt-[10px]'>
