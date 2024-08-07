@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
 
     const getData = async () => {
-      const res = await axios.get('https://ecommerce-ashy-ten.vercel.app/api/general/getProducts')
+      const res = await axios.get('http://localhost:3000/api/general/getProducts')
       if (res) {
         setProducts(res.data.products)
       }

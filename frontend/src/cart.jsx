@@ -10,7 +10,7 @@ const Cart = () => {
     const getData = async () => {
         // console.log('details cart ', details.token)
         setLoading(true)
-        const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/getCart', {}, {
+        const res = await axios.post('http://localhost:3000/api/general/getCart', {}, {
             headers: { Authorization: details.token }
         })
 
@@ -43,7 +43,7 @@ const Cart = () => {
 
     const removeProductCart = async (ind) => {
         setLoading(true)
-        const res = await axios.post(`https://ecommerce-ashy-ten.vercel.app/api/general/removeProductCart/${ind}`, {}, {
+        const res = await axios.post(`http://localhost:3000/api/general/removeProductCart/${ind}`, {}, {
             headers: { Authorization: details.token }
         })
         
@@ -58,7 +58,7 @@ const Cart = () => {
 
     const INC = async (ind) => {
         qty[ind].quantity = Number(qty[ind].quantity) + 1
-        const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/updateQuantityCart', { ind, qty: qty[ind].quantity }, {
+        const res = await axios.post('http://localhost:3000/api/general/updateQuantityCart', { ind, qty: qty[ind].quantity }, {
             headers: { Authorization: details.token }
         })
         if (res.data.alert == 'jwt expired') {
@@ -72,7 +72,7 @@ const Cart = () => {
     const DEC = async (ind) => {
         if (qty[ind].quantity >= 1) {
             qty[ind].quantity = Number(qty[ind].quantity) - 1
-            const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/updateQuantityCart', { ind, qty: qty[ind].quantity }, {
+            const res = await axios.post('http://localhost:3000/api/general/updateQuantityCart', { ind, qty: qty[ind].quantity }, {
                 headers: { Authorization: details.token }
             })
             if (res.data.alert == 'jwt expired') {
@@ -86,7 +86,7 @@ const Cart = () => {
 
     const orderProduct = async (productId) =>{
         // console.log('productId',productId)
-        const res = await axios.post(`https://ecommerce-ashy-ten.vercel.app/api/general/orderProduct`,{productId},{
+        const res = await axios.post(`http://localhost:3000/api/general/orderProduct`,{productId},{
             headers:{Authorization:details.token}
         })
         if (res.data.alert == 'jwt expired') {

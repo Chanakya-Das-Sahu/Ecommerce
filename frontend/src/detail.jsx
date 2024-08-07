@@ -13,7 +13,7 @@ const Detail = () => {
 
         const getData = async () => {
 
-            const res = await axios.get(`https://ecommerce-ashy-ten.vercel.app/api/general/getProduct/${details.productId}`)
+            const res = await axios.get(`http://localhost:3000/api/general/getProduct/${details.productId}`)
             console.log('detail', res)
             setProduct(res.data)
             if (details.userId === '') {
@@ -23,7 +23,7 @@ const Detail = () => {
         }
 
         const checkProductInCart = async () => {
-            const res = await axios.post(`https://ecommerce-ashy-ten.vercel.app/api/general/checkProductInCart/${details.productId}`, {}, {
+            const res = await axios.post(`http://localhost:3000/api/general/checkProductInCart/${details.productId}`, {}, {
                 headers: { Authorization: details.token }
             })
             console.log('check', res)
@@ -52,7 +52,7 @@ const Detail = () => {
         if (details.userId !== '') {
             const cartData = { productId: details.productId, qty: '1' }
             setCartBool('Added To Cart')
-            const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/addToCart', cartData, {
+            const res = await axios.post('http://localhost:3000/api/general/addToCart', cartData, {
                 headers: { Authorization: details.token }
             })
 
