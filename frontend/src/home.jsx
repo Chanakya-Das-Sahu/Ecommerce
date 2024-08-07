@@ -73,11 +73,11 @@ const Home = () => {
 <h1>{showFilter}</h1>
         {showFilter &&
 
-        <div className="absolute rounded-[6px] bg-[#2e4964] z-10 left-[0px] top-[0px] px-[20px] py-[20px] text-[white] flex flex-col" style={{boxShadow:'1px 1px 30px 1px gray'}}>
+        <div className="absolute rounded-[6px] bg-[#2e4964] z-10 left-[0px] top-[0px] px-[20px] py-[20px] flex flex-col" style={{boxShadow:'1px 1px 30px 1px gray'}}>
             <div className='self-end border ' onClick={()=>{setShowFilter(false)}}><img src={Cross} width='30px' className='border-r-[5px] border-white'/></div>
-          <div className='text-[18px] font-bold'>Price Filter</div>
+          <div className='text-[18px] text-white font-bold'>Price Filter</div>
           <div className='flex justify-around'>
-            <div className='price-container flex flex-col pt-[10px]'>
+            <div className='price-container-menu flex flex-col pt-[10px]'>
             <div ><input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
               <div ><input type='radio' name='price_filter' value='1-100' onChange={(e) => { handleFilter(e) }} /><div>1-100 ₹</div></div>
               <div><input type='radio' name='price_filter' value='100-500' onChange={(e) => { handleFilter(e) }} /><div>100-500 ₹</div></div>
@@ -89,9 +89,9 @@ const Home = () => {
         
           </div>
           <div className='h-[30px]'></div>
-          <div className='text-[18px] font-bold'>Category Filter</div>
+          <div className='text-[18px] text-white font-bold'>Category Filter</div>
         
-            <div className='price-container flex flex-col pt-[10px]'>
+            <div className='price-container-menu flex flex-col pt-[10px]'>
             <div ><input type='radio' name='category_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
               <div ><input type='radio' name='category_filter' value='Health' onChange={(e) => { handleFilter(e) }} /><div>Health ₹</div></div>
               <div><input type='radio' name='category_filter' value='Clothes' onChange={(e) => { handleFilter(e) }} /><div>Clothes ₹</div></div>

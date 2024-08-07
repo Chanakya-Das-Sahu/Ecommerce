@@ -17,13 +17,18 @@
   }
 
 .price-container div{
-  font-size: 20px;
-  color:white;
+   font-size: 20px;
+  color:#374151;
   display:flex;
-  /* justify-content: start; */
   gap:10px;
 }
 
+.price-container-menu div{
+  font-size: 20px;
+  color:white;
+  display:flex;
+  gap:10px;
+}
 .price-container div div{
   width:auto;
   display:flex;
