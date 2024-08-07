@@ -6,6 +6,7 @@ const general = require('./Routes/general')
 app.use(cors())
 app.use(express.json())
 connectToMongo()
+console.log('charu')
 
 app.use('/api/general',general)
 

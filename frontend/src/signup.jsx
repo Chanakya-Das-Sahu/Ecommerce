@@ -5,52 +5,83 @@ import { useNavigate } from 'react-router-dom'
 import { context } from './App'
 import { useContext } from 'react'
 import Loading from './loading.gif'
+import * as yup from 'yup'
 const Signup = () =>{
-  const[userDetails,setUserDetails] = useState({email:'',password:''})
+  const[userDetails,setUserDetails] = useState({email:'',password:'',otp:''})
    const { setShowSignupPage,showSignupPage , setShowLoginPage} = useContext(context)
-   const [isEmailValid,setIsEmailValid] = useState(true)
-   const [isPasswordValid,setIsPasswordValid] = useState(true)
+  const[otpSent,setOtpSent] = useState(false)
    const [exists,setExists] = useState(false)
    const[loading,setLoading] = useState(false)
   const navigate = useNavigate()
+ const[errors,setErrors] = useState()
+const[otpAlert,setOtpAlert] = useState(false)
   const handleInput = (e) =>{
     setUserDetails({...userDetails,[e.target.name]:e.target.value})
   }
 
+  const schema = yup.object({
+    email:yup.string().email('Invalid Email Formate ').required('Email Required'),
+    password:yup.string().required('Password Required')
+    .min('8')
+  })
+
+  const handleSendOTP = async () =>{
+    try{
+    await schema.validate(userDetails,{abortEarly:false})
+    // console.log('submitted')
+    setLoading(true)
+    setErrors({email:'',password:''})
+    const res =  await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/otpSending',{email:userDetails.email})
+    // console.log('jl',res)
+    if(res.data){
+      setLoading(false)
+      // console.log('hi')
+    }
+    if(res.data.msg=='otp sent'){
+      setExists(false)
+      setOtpSent(true)
+    }
+    if(res.data.alert){
+      setExists(true)
+    }
+    }catch(err){
+ const errorObject = err.inner.reduce((acc, error) => {
+        acc[error.path] = error.message;
+        return acc;
+      }, {});
+      setErrors(errorObject);
+      // console.log('charu',errorObject)
+     
+    }
+  }
+
   const handleSignup = async () =>{
- if(isEmailValid && isPasswordValid){
+    // console.log('handleSignup')
   setLoading(true)
   const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/signup',userDetails)
   // console.log('res signup',res)
-  if(res.data.alert='user exists already'){
-    setExists(true)  
-  }
   if(res.data){
     setLoading(false)
   }
-
+  if(res.data.msg=='user is created successfully'){
+     setShowSignupPage(false)
+  setShowLoginPage(true)
+  }
+  if(res.data.alert){
+ setOtpAlert(res.data.alert)
+  }
+ 
+}
  
   
-  if(res.data.msg=='user is created successfully'){
-         setShowSignupPage(false)
-         setShowLoginPage(true)
-  }
-}
-  }
+//   if(res.data.msg=='user is created successfully'){
+//          setShowSignupPage(false)
+//          setShowLoginPage(true)
+//   }
+// }
+//   }
 
   
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-const validateEmail = (email) => {
-  const isValid = emailRegex.test(email);
-  setIsEmailValid(isValid); 
-  return isValid;
-};
-
-const validatePassword = (password) => {
-  const isValid = password.length >= 6; 
-  setIsPasswordValid(isValid); 
-  return isValid;
-};
 
     return(
         <>
@@ -70,11 +101,9 @@ const validatePassword = (password) => {
       onChange={(e) => handleInput(e)}
       value={userDetails.email}
       placeholder="Email Address"
-      onBlur={(e) => validateEmail(e.target.value)} 
-    />
-    {isEmailValid ? null : (
-      <span className="text-red-500 text-sm mb-2">Please enter a valid email address.</span>
-    )}
+      disabled={otpSent}
+        />
+   {errors?.email && <div className="text-red-500 text-[10px] mb-2" >{errors.email }</div> } 
 
     <input
       type="password"
@@ -83,11 +112,9 @@ const validatePassword = (password) => {
       onChange={(e) => handleInput(e)}
       value={userDetails.password}
       placeholder="Password"
-      onBlur={(e) => validatePassword(e.target.value)} 
+      disabled={otpSent}
     />
-    {isPasswordValid ? null : (
-      <span className="text-red-500 text-sm mb-2">Please enter a password (minimum 6 characters).</span>
-    )}
+   {errors?.password && <div className="text-red-500 text-[10px] mb-2" >{errors.password }</div> } 
    
    {exists ? (
     <span className='text-red-500'>This email exists already</span>
@@ -95,17 +122,51 @@ const validatePassword = (password) => {
    null
    }
 
-   {loading ?
-   <img src={Loading} width='100px' className='m-auto'/>
+<div className="flex flex-col gap-[20px] mb-[100px]">
+    
+
+
+
+   {!otpSent ?
+   (loading?
+     <img src={Loading} width='100px' className='mx-auto' />:
+    <button
+      onClick={handleSendOTP}
+      // className="text-center  w-full h-10 bg-blue-500 font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      className='text-center text-white bg-blue-700 hover:bg-blue-500 rounded-md'
+    >
+      Send OTP
+    </button>
+   )
+    
+
    :
- <button
+   <>
+   <input
+      type="text"
+      className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      name="otp"
+      onChange={(e) => handleInput(e)}
+      value={userDetails.otp}
+      placeholder="OTP"
+      // onBlur={(e) => validateEmail(e.target.value)} 
+    />
+    {loading ?
+    <img src={Loading} width='100px' className='mx-auto'/>
+    :
+    <>
+      <button
       onClick={handleSignup}
       // className="text-center  w-full h-10 bg-blue-500 font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       className='text-center text-white bg-blue-700 hover:bg-blue-500 rounded-md'
-      disabled={!isEmailValid || !isPasswordValid} 
     >
-      Signup
+     Signup
     </button>
+    {otpAlert && <div className="text-red-500 text-[10px] mb-2" >{otpAlert}</div>}
+    </>
+    }
+ 
+    </>
    }
    
 
@@ -113,9 +174,9 @@ const validatePassword = (password) => {
   </div>
 </div>
 
-
-        </>
-    )
-}
+  </div>
+  </>
+  )
+  }
 
 export default Signup 

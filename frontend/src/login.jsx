@@ -1,56 +1,70 @@
-import React, { useContext } from 'react'
-import { useState } from 'react'
-import axios from 'axios'
-import { context } from './App'
-import { jwtDecode } from 'jwt-decode'
-import { useNavigate } from 'react-router-dom'
-import Loading from './loading.gif'
-const Login = () => {
-  const[loading,setLoading] = useState(false)
-  const [userDetails, setUserDetails] = useState({ email: '', password: '' })
-  const { setShowLoginPage , setShowLogout ,details , setDetails} = useContext(context)
-  const [isEmailValid,setIsEmailValid] = useState(true)
-  const [isPasswordValid,setIsPasswordValid] = useState(true)
-  const [incorrectCredential,setIncorrectCredentials] = useState(false)
-  const navigate = useNavigate()
-  const handleInput = (e) => {
-    setUserDetails({ ...userDetails, [e.target.name]: e.target.value })
-  }
+    import React, { useContext, useEffect } from 'react'
+    import { useState } from 'react'
+    import axios from 'axios'
+    import { context } from './App'
+    import { jwtDecode } from 'jwt-decode'
+    import { useNavigate } from 'react-router-dom'
+    import Loading from './loading.gif'
+    // import * as yup from 'yup'
+    import * as yup from 'yup'
+    const Login = () => {
+      const[loading,setLoading] = useState(false)
+      const [userDetails, setUserDetails] = useState({ email: '', password: '' })
+      const { setShowLoginPage , setShowLogout ,details , setDetails} = useContext(context)
+      const [incorrectCredential,setIncorrectCredentials] = useState(false)
+      const[errors,setErrors] = useState()
+      const navigate = useNavigate()
+      
+      const schema = yup.object({
+        email:yup.string().email('Invalid Email Formate : ').required('Email Is Required : '),
+        password:yup.string().required('Password is required')
+        // .min(8,'Password must be at least 8 characters')
+      })
 
-  const handleLogin = async () => {
-    if(isEmailValid && isPasswordValid){
-      setLoading(true)
-       const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/login', userDetails)
-    console.log('res login',res)
-    if(res.data.alert=='incorrect credentials'){
-      setIncorrectCredentials(true)
-    }
-    if (res.data.token != '') {
-      const decodedToken = jwtDecode(res.data.token)
-      setDetails({ ...details,token:res.data.token,userId: decodedToken.userId ,exp:decodedToken.exp})
-      setShowLoginPage(false)
-      setShowLogout(true) 
-      navigate('/')
-    }
+      const handleInput = (e) => {
+        setUserDetails({ ...userDetails, [e.target.name]: e.target.value })
+      }
+    
 
-    if(res.data){
-      setLoading(false)
-    }
-    }
-  }
+      const handleLogin = async () =>{
+    
+        try{
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-const validateEmail = (email) => {
-  const isValid = emailRegex.test(email);
-  setIsEmailValid(isValid); 
-  return isValid;
-};
+         await schema.validate(userDetails,{abortEarly:false})
+         console.log('Submitted')
+         setErrors({email:'',password:''})
+     
+   
+      
+      
+     setLoading(true)
+        const res = await axios.post('https://ecommerce-ashy-ten.vercel.app/api/general/login', userDetails)
+      console.log('res login',res)
+      if(res.data.alert=='incorrect credentials'){
+        setIncorrectCredentials(true)
+        setLoading(false)
+      }
+      if (res.data.token != '') {
+        const decodedToken = jwtDecode(res.data.token)
+        setDetails({ ...details,token:res.data.token,userId: decodedToken.userId ,exp:decodedToken.exp})
+        setShowLoginPage(false)
+        setShowLogout(true) 
+        navigate('/')
+      }
 
-const validatePassword = (password) => {
-  const isValid = password.length >= 6; 
-  setIsPasswordValid(isValid); 
-  return isValid;
-};
+      if(res.data){
+        setLoading(false)
+      }
+
+    }catch(err){
+      const errorObject = err.inner.reduce((acc, error) => {
+        acc[error.path] = error.message;
+        return acc;
+      }, {});
+      setErrors(errorObject);
+      console.log('charu',errorObject)
+    }
+      }
   return (
     <>
 
@@ -66,25 +80,22 @@ const validatePassword = (password) => {
       type="text"
       className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       name="email"
-      onChange={(e) => handleInput(e)}
+      onChange={(e) => {handleInput(e)}}
       placeholder="Email Address"
-      onBlur={(e) => validateEmail(e.target.value)} 
-    />
-    {isEmailValid ? null : (
-      <span className="text-red-500 text-sm mb-2">Please enter a valid email address.</span>
-    )}
-
+     />
+    {errors?.email && <div className="text-red-500 text-[10px] mb-2" >{errors.email }</div> } 
     <input
       type="password"
       className="text-black login-input w-full h-10 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       name="password"
-      onChange={(e) => handleInput(e)}
+      onChange={(e) =>{ handleInput(e)}}
       placeholder="Password"
-      onBlur={(e) => validatePassword(e.target.value)} 
+      // onBlur={(e) => validatePassword(e.target.value)} 
     />
-    {isPasswordValid ? null : (
+    {/* {isPasswordValid ? null : (
       <span className="text-red-500 text-sm mb-2">Please enter a password (minimum 6 characters).</span>
-    )}
+    )} */}
+ {errors?.password && <div className="text-red-500 text-[10px] mb-2" >{errors.password}</div> } 
    {incorrectCredential ? (
     <span className='text-red-500'>Incorrect Credentials</span>
    ):null
@@ -97,7 +108,7 @@ const validatePassword = (password) => {
       onClick={handleLogin}
       // className="login-btn w-full h-10 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
       className='text-white text-center rounded-md bg-blue-700 hover:bg-blue-500'
-      disabled={!isEmailValid || !isPasswordValid} 
+ 
     >
       Login
     </button>
@@ -116,5 +127,5 @@ const validatePassword = (password) => {
     </>
   )
 
-}
+    }
 export default Login;

@@ -6,22 +6,73 @@ const bcrypt = require('bcrypt')
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 const Auth = require('./Auth')
+const nodemailer = require('nodemailer')
 
-router.post('/signup', async (req, res) => {
-   const { email, password } = req.body
+let OTP = '' ;
+let time = 0 ;
+router.post('/otpSending', async (req, res) => {
+   const { email } = req.body
+   // console.log('email',email)
+   // console.log('otpsending')
    const userExists = await user.findOne({ email })
-
+   // console.log('useExists',userExists)
    if (userExists) {
-      // console.log('user exists')
       res.json({ alert: 'user exists already' })
    } else {
-      const hashedPassword = await bcrypt.hash(password, 10)
-      const createdUser = await user.create({ email, password: hashedPassword, address: '', mnumber: '', name: '' })
-      if (createdUser) {
-         res.json({ msg: 'user is created successfully' })
-      }
+      OTP = Math.floor(Math.random() * 1000000).toString();
+      // OTP Sending :
+
+      // time = Date.now() + 1000 * 60 * 10 ;
+      time = Date.now() + 1000 * 30 ;
+      console.log('OTP : ',OTP)
+      const transporter = nodemailer.createTransport({
+         service: 'gmail',
+         auth: {
+            user: 'ccccsahu@gmail.com',
+            pass: process.env.PASS
+         }
+      });
+
+      const mailOptions = {
+         from: 'ccccsahu@gmail.com',
+         to: email,
+         subject: 'Chanakya Ecommerce OTP Verficiation : ',
+         text: OTP
+      };
+
+      const response = await transporter.sendMail(mailOptions, (error, info) => {
+         if (error) {
+            console.error(error);
+         } else {
+            console.log('Email sent: ' + info.response);
+            res.json({msg:'otp sent'})
+         }
+
+      });
+
+      // OTP Sending .
+      
    }
 
+})
+
+router.post('/signup', async (req, res) => {
+   const { email, password, otp } = req.body
+     if(time>Date.now()){
+     
+   if (otp == OTP ) {
+      const hashedPassword = await bcrypt.hash(password, 10)
+      const createdUser = await user.create({ email, password: hashedPassword, address: '', mnumber: '', name: '' })
+      if(true){
+         res.json({ msg: 'user is created successfully' })
+      }
+
+   } else {
+      res.json({ alert: 'OTP is inavalid' })
+   }
+}else{
+   res.json({alert:'OTP is expired'})
+}
 })
 
 router.post('/login', async (req, res) => {
@@ -62,13 +113,13 @@ router.put('/updateUserDetails', Auth, async (req, res) => {
    const updatedUser = await user.findByIdAndUpdate(
       _id,
       { $set: { name, email, mnumber, address } },
-      {new:true}
+      { new: true }
    )
    // console.log('updatedUser',updatedUser)
-   if(updatedUser){
-      res.json({msg:'updated'})
+   if (updatedUser) {
+      res.json({ msg: 'updated' })
    }
-   
+
 })
 
 router.get('/getProduct/:id', async (req, res) => {
@@ -150,16 +201,16 @@ router.post('/updateQuantityCart', Auth, async (req, res) => {
    res.json({ msg: 'cart quantity has been updated successfully' })
 })
 
-router.post('/orderProduct',Auth,async(req,res)=>{
-   
-   const{userId} = req.body 
-   const {address} = await user.findById(userId)
-   if(address){
-       
-   }else{
-      res.json({alert:'complete your profile'})
+router.post('/orderProduct', Auth, async (req, res) => {
+
+   const { userId } = req.body
+   const { address } = await user.findById(userId)
+   if (address) {
+
+   } else {
+      res.json({ alert: 'complete your profile' })
    }
-   
+
 })
 
 module.exports = router;
