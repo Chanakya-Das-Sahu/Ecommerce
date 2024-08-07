@@ -171,18 +171,26 @@ router.post('/getCart', Auth, async (req, res) => {
 })
 
 router.post('/checkProductInCart/:productId', Auth, async (req, res) => {
+   
    const { productId } = req.params
    const { userId } = req.body
+   // console.log('charu',productId,userId)
    const Cart = await cart.findOne({ userId })
+   // console.log('Cart',Cart)
    if (Cart) {
       const Exists = Cart.products.some((product) => product.productId == productId)
       if (Exists) {
+         // console.log('exists')
          res.json({ msg: 'exists' })
       } else {
+         // console.log('not exist')
          res.json({ alert: 'not exist' })
       }
+   }else{
+      res.json({alert:'not exist'})
    }
 })
+
 router.post('/removeProductCart/:index', Auth, async (req, res) => {
    const { index } = req.params
    const { userId } = req.body

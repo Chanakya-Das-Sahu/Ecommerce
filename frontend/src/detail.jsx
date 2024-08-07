@@ -23,12 +23,13 @@ const Detail = () => {
         }
 
         const checkProductInCart = async () => {
+            console.log('checkProductInCart')
             const res = await axios.post(`http://localhost:3000/api/general/checkProductInCart/${details.productId}`, {}, {
                 headers: { Authorization: details.token }
             })
             console.log('check', res)
 
-            if (res.data.alert) {
+            if (res.data) {
                 setLoading(false)
             }
 
