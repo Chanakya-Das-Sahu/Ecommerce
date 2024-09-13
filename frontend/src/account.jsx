@@ -215,8 +215,8 @@ const Account = () => {
               
                 {userDetails !== '' ? (
                     <>
-                        <div className='max-w-full mx-auto my-[20px] text-black text-[20px] px-[50px] py-[10px] flex flex-col gap-[15px] bg-[#2e4964]'>
-                            <span className='text-center'><b>Details</b></span>
+                        <div className='max-w-full mx-auto my-[20px] text-black text-[20px] px-[50px] py-[10px] flex flex-col gap-[15px] bg-white'>
+                            <span className='text-center '><b>Details</b></span>
                             <lable className='text-white'>Name : </lable>
                             <input
                                 className='charu px-[10px]'
@@ -257,7 +257,7 @@ const Account = () => {
                                 aria-describedby="address-error"  
                             />
                             {errors.address && <span id="address-error" className="error-message">{errors.address}</span>} 
-                            <button onClick={updateDetails} className='charu bg-[#f9abaf]'>
+                            <button onClick={updateDetails} className='text-white text-center rounded-md bg-blue-700 hover:bg-blue-500'>
                                 Update Details
                             </button>
                         </div>

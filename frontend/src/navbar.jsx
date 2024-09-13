@@ -24,20 +24,20 @@ const Navbar = () => {
     }
     return (
         <nav className='border border-solid border-black flex justify-around items-center h-[50px] text-[20px] text-white text-bold bg-[#2e4964]'>
-            <div className='filter:hidden' onClick={()=>{setShowFilter(true)}}><img src={menu} width='30px'/></div>
-            <div className=''><Link to='/'>Home</Link></div>
-            <div className=''><Link to='/Cart'>Cart</Link></div>
+            <div className='filter:hidden' onClick={()=>{setShowFilter(true)}}><img src={menu} width='30px'/></div> 
+            <div className='hover:text-[#f9abaf]'><Link to='/'>Home</Link></div>
+            <div className='hover:text-[#f9abaf]'><Link to='/Cart'>Cart</Link></div>
             {/* <div className=''><Link to='/Orders'>Orders</Link></div> */}
             {showLogout ?
                 <>
-                <div className=''><Link to='/account'>Account</Link></div> 
-                 <button onClick={handleLogout}>Log Out</button>
+                <div className='hover:text-[#f9abaf]'><Link to='/account'>Account</Link></div> 
+                 <button className='hover:text-[#f9abaf]' onClick={handleLogout}>Log Out</button>
                 
                 </>
                 :
                 <>
-                    <button onClick={() => { setShowLoginPage(true);setShowSignupPage(false)}}>Login</button>
-                    <button onClick={() => { setShowSignupPage(true);setShowLoginPage(false)}}>Signup</button>
+                    <button onClick={() => { setShowLoginPage(true);setShowSignupPage(false)}} className='hover:text-[#f9abaf]'>Login</button>
+                    <button onClick={() => { setShowSignupPage(true);setShowLoginPage(false)}} className='hover:text-[#f9abaf]'>Signup</button>
                 </>
             }
 {showLoginPage && <Login/>}

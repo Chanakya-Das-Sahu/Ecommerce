@@ -43,11 +43,11 @@ const Home = () => {
   return (
     <>
 
-      <div className="w-full h-[100vh] py-[-10px] flex justify-around items-center bg-[#f9abaf]">
-        <div className="range:hidden flex flex-col justify-center items-center border-r-[1px] border-solid border-white w-[230px] h-[500px]">
+      <div className="w-full h-[100vh] py-[-10px]  flex justify-around items-center bg-gray-300  ">
+        <div className="range:hidden flex flex-col  justify-center items-center  w-[230px] h-[500px]">
           <div className='text-[18px] font-bold'>Price Filter</div>
-          <div className='flex justify-around'>
-            <div className='price-container flex flex-col pt-[10px]'>
+          <div className='flex justify-around '>
+            <div className='price-container flex flex-col pt-[10px] text-white'>
             <div ><input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
               <div ><input type='radio' name='price_filter' value='1-100' onChange={(e) => { handleFilter(e) }} /><div>1-100 ₹</div></div>
               <div><input type='radio' name='price_filter' value='100-500' onChange={(e) => { handleFilter(e) }} /><div>100-500 ₹</div></div>
@@ -102,7 +102,7 @@ const Home = () => {
         </div>
 }
 {/* w-[900px] h-[500px] */}
-        <div className="charu h-[100vh] w-full flex flex-row flex-wrap justify-around justify-first overflow-auto scroll px-[20px]">
+        <div className="bg-[#f9abaf]  h-[100vh] w-full flex flex-row flex-wrap justify-around justify-first overflow-auto scroll px-[20px]">
 
 
           {products.length > 0 ?
@@ -119,7 +119,7 @@ const Home = () => {
                 )
                 && (
 
-                  <div key={ind} className=" rounded-[10px] text-[20px] product-card bg-[#f9abaf] shadow-md rounded cursor-pointer transform transition-transform duration:300 hover:scale-110 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
+                  <div key={ind} className=" rounded-[10px] text-[20px] product-card bg-gray-300 shadow-md rounded cursor-pointer transform transition-transform duration:300 hover:scale-110 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
                     <img src={ele.image} alt="image" className="w-[150px] h-[150px]" />
                     <div>
                       <div className="max-h-[30px] justify-content-center overflow-hidden text-font-medium text-gray-900 ">{ele.name}</div>

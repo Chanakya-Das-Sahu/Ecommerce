@@ -7,6 +7,7 @@ export default {
 theme: {
     screens: {
       range:{'min':'0px' , 'max':'730px' },
+      logohide:{'min':'730px' , 'max':'2000px' },
       filter:'730px',
       res:'460px',
       ch:'580px',

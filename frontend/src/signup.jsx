@@ -91,7 +91,7 @@ const[otpAlert,setOtpAlert] = useState(false)
     &times;
   </button>
 
-  <h2 className="text-xl font-medium mb-4 text-center">Signup</h2>
+  <h2 className="text-[20px] text-black font-[700] mb-4 text-center">Signup</h2><br/>
 
   <div className="flex flex-col gap-[20px] mb-[100px]">
     <input

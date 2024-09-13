@@ -10,7 +10,7 @@
     const Login = () => {
       const[loading,setLoading] = useState(false)
       const [userDetails, setUserDetails] = useState({ email: '', password: '' })
-      const { setShowLoginPage , setShowLogout ,details , setDetails} = useContext(context)
+      const { setShowLoginPage , setShowLogout ,details , setDetails,setShowSignupPage} = useContext(context)
       const [incorrectCredential,setIncorrectCredentials] = useState(false)
       const[errors,setErrors] = useState()
       const navigate = useNavigate()
@@ -68,12 +68,12 @@
   return (
     <>
 
-<div className="w-[300px] max-w-full login-dialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white flex flex-col justify-around rounded-md shadow-md p-6 z-50 h-[400px]">
+<div className=" bg-white w-[300px] max-w-full login-dialog fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  flex flex-col justify-around rounded-md shadow-md p-6 z-50 h-[370px]">
   <button className="close-btn absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onClick={() => setShowLoginPage(false)}>
     &times;
   </button>
 
-  <h2 className="text-xl font-medium mb-4 text-center">Login</h2>
+  <h2 className="text-[20px] text-black font-[700] mb-4 text-center">Login</h2>
 
   <div className="flex flex-col gap-[20px] mb-[100px]">
     <input
@@ -115,7 +115,7 @@
 
 }
    
-
+<div className='text-black underline m-auto cursor-pointer' onClick={()=>{setShowSignupPage(true)}}>signup</div>
 
   </div>
 </div>
