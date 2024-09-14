@@ -9,7 +9,7 @@ import Cross from './cross.png'
 const Home = () => {
   const [products, setProducts] = useState([])
   const [filters, setFilters] = useState({ price_filter: 'All', category_filter: 'All' })
-  const { details, setDetails ,showFilter , setShowFilter } = useContext(context)
+  const { details, setDetails, showFilter, setShowFilter } = useContext(context)
   const navigate = useNavigate()
   useEffect(() => {
 
@@ -43,12 +43,12 @@ const Home = () => {
   return (
     <>
 
-      <div className="w-full h-[100vh] py-[-10px]  flex justify-around items-center bg-gray-300  ">
-        <div className="range:hidden flex flex-col  justify-center items-center  w-[230px] h-[500px]">
+      <div className="w-full h-[100vh] py-[-10px]  flex justify-around items-center bg-[white]  ">
+        <div className="range:hidden flex flex-col filter  justify-center items-center  w-[230px] h-[500px]">
           <div className='text-[18px] font-bold'>Price Filter</div>
           <div className='flex justify-around '>
             <div className='price-container flex flex-col pt-[10px] text-white'>
-            <div ><input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
+              <div ><input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
               <div ><input type='radio' name='price_filter' value='1-100' onChange={(e) => { handleFilter(e) }} /><div>1-100 ₹</div></div>
               <div><input type='radio' name='price_filter' value='100-500' onChange={(e) => { handleFilter(e) }} /><div>100-500 ₹</div></div>
               <div><input type='radio' name='price_filter' value='500-1000' onChange={(e) => { handleFilter(e) }} /><div>500-1000 ₹</div></div>
@@ -56,58 +56,58 @@ const Home = () => {
               <div><input type='radio' name='price_filter' value='5000-10000' onChange={(e) => { handleFilter(e) }} /> <div>5000-10000 ₹</div></div>
               <div><input type='radio' name='price_filter' value='10000-50000' onChange={(e) => { handleFilter(e) }} /><div>10000-50000 ₹</div></div>
             </div>
-        
+
           </div>
           <div className='h-[30px]'></div>
           <div className='text-[18px] font-bold'>Category Filter</div>
-        
-            <div className='price-container flex flex-col pt-[10px]'>
+
+          <div className='price-container flex flex-col pt-[10px]'>
             <div ><input type='radio' name='category_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
-              <div ><input type='radio' name='category_filter' value='Health' onChange={(e) => { handleFilter(e) }} /><div>Health ₹</div></div>
-              <div><input type='radio' name='category_filter' value='Clothes' onChange={(e) => { handleFilter(e) }} /><div>Clothes ₹</div></div>
-              <div><input type='radio' name='category_filter' value='Accessaries' onChange={(e) => { handleFilter(e) }} /><div>Accessaries ₹</div></div>
-              <div><input type='radio' name='category_filter' value='Sports' onChange={(e) => { handleFilter(e) }} /><div>Sports ₹</div></div>
-              <div><input type='radio' name='category_filter' value='Cosmatics' onChange={(e) => { handleFilter(e) }} /> <div>Cosmatics ₹</div></div>
-            </div>
+            <div ><input type='radio' name='category_filter' value='Health' onChange={(e) => { handleFilter(e) }} /><div>Health ₹</div></div>
+            <div><input type='radio' name='category_filter' value='Clothes' onChange={(e) => { handleFilter(e) }} /><div>Clothes ₹</div></div>
+            <div><input type='radio' name='category_filter' value='Accessaries' onChange={(e) => { handleFilter(e) }} /><div>Accessaries ₹</div></div>
+            <div><input type='radio' name='category_filter' value='Sports' onChange={(e) => { handleFilter(e) }} /><div>Sports ₹</div></div>
+            <div><input type='radio' name='category_filter' value='Cosmatics' onChange={(e) => { handleFilter(e) }} /> <div>Cosmatics ₹</div></div>
+          </div>
         </div>
-<h1>{showFilter}</h1>
+        <h1>{showFilter}</h1>
         {showFilter &&
 
-        <div className="absolute rounded-[6px] bg-[#2e4964] z-10 left-[0px] top-[0px] px-[20px] py-[20px] flex flex-col" style={{boxShadow:'1px 1px 30px 1px gray'}}>
-            <div className='self-end border ' onClick={()=>{setShowFilter(false)}}><img src={Cross} width='30px' className='border-r-[5px] border-white'/></div>
-          <div className='text-[18px] text-white font-bold'>Price Filter</div>
-          <div className='flex justify-around'>
-            <div className='price-container-menu flex flex-col pt-[10px]'>
-            <div ><input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
-              <div ><input type='radio' name='price_filter' value='1-100' onChange={(e) => { handleFilter(e) }} /><div>1-100 ₹</div></div>
-              <div><input type='radio' name='price_filter' value='100-500' onChange={(e) => { handleFilter(e) }} /><div>100-500 ₹</div></div>
-              <div><input type='radio' name='price_filter' value='500-1000' onChange={(e) => { handleFilter(e) }} /><div>500-1000 ₹</div></div>
-              <div><input type='radio' name='price_filter' value='1000-5000' onChange={(e) => { handleFilter(e) }} /><div>1000-5000 ₹</div></div>
-              <div><input type='radio' name='price_filter' value='5000-10000' onChange={(e) => { handleFilter(e) }} /> <div>5000-10000 ₹</div></div>
-              <div><input type='radio' name='price_filter' value='10000-50000' onChange={(e) => { handleFilter(e) }} /><div>10000-50000 ₹</div></div>
+          <div className="absolute rounded-[6px] bg-[#2e4964] z-10 left-[0px] top-[0px] px-[20px] py-[20px] flex flex-col" style={{ boxShadow: '1px 1px 30px 1px gray' }}>
+            <div className='self-end border ' onClick={() => { setShowFilter(false) }}><img src={Cross} width='30px' className='border-r-[5px] border-white' /></div>
+            <div className='text-[18px] text-white font-bold'>Price Filter</div>
+            <div className='flex justify-around'>
+              <div className='price-container-menu flex flex-col pt-[10px]'>
+                <div ><input type='radio' name='price_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
+                <div ><input type='radio' name='price_filter' value='1-100' onChange={(e) => { handleFilter(e) }} /><div>1-100 ₹</div></div>
+                <div><input type='radio' name='price_filter' value='100-500' onChange={(e) => { handleFilter(e) }} /><div>100-500 ₹</div></div>
+                <div><input type='radio' name='price_filter' value='500-1000' onChange={(e) => { handleFilter(e) }} /><div>500-1000 ₹</div></div>
+                <div><input type='radio' name='price_filter' value='1000-5000' onChange={(e) => { handleFilter(e) }} /><div>1000-5000 ₹</div></div>
+                <div><input type='radio' name='price_filter' value='5000-10000' onChange={(e) => { handleFilter(e) }} /> <div>5000-10000 ₹</div></div>
+                <div><input type='radio' name='price_filter' value='10000-50000' onChange={(e) => { handleFilter(e) }} /><div>10000-50000 ₹</div></div>
+              </div>
+
             </div>
-        
-          </div>
-          <div className='h-[30px]'></div>
-          <div className='text-[18px] text-white font-bold'>Category Filter</div>
-        
+            <div className='h-[30px]'></div>
+            <div className='text-[18px] text-white font-bold'>Category Filter</div>
+
             <div className='price-container-menu flex flex-col pt-[10px]'>
-            <div ><input type='radio' name='category_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
+              <div ><input type='radio' name='category_filter' value='All' onChange={(e) => { handleFilter(e) }} /><div>All</div></div>
               <div ><input type='radio' name='category_filter' value='Health' onChange={(e) => { handleFilter(e) }} /><div>Health ₹</div></div>
               <div><input type='radio' name='category_filter' value='Clothes' onChange={(e) => { handleFilter(e) }} /><div>Clothes ₹</div></div>
               <div><input type='radio' name='category_filter' value='Accessaries' onChange={(e) => { handleFilter(e) }} /><div>Accessaries ₹</div></div>
               <div><input type='radio' name='category_filter' value='Sports' onChange={(e) => { handleFilter(e) }} /><div>Sports ₹</div></div>
               <div><input type='radio' name='category_filter' value='Cosmatics' onChange={(e) => { handleFilter(e) }} /> <div>Cosmatics ₹</div></div>
             </div>
-        </div>
-}
-{/* w-[900px] h-[500px] */}
-        <div className="bg-[#f9abaf]  h-[100vh] w-full flex flex-row flex-wrap justify-around justify-first overflow-auto scroll px-[20px]">
+          </div>
+        }
+        {/* w-[900px] h-[500px] */}
+        <div className="gap-[30px] bg-[#f9abaf] h-[100vh] w-full flex flex-row flex-wrap justify-around overflow-auto scroll p-[20px]">
 
 
           {products.length > 0 ?
             (
-              products.map((ele,ind) => (
+              products.map((ele, ind) => (
 
                 (
                   (filters.category_filter == 'All' || ele.cat == filters.category_filter) &&
@@ -119,17 +119,17 @@ const Home = () => {
                 )
                 && (
 
-                  <div key={ind} className=" rounded-[10px] text-[20px] product-card bg-gray-300 shadow-md rounded cursor-pointer transform transition-transform duration:300 hover:scale-110 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
+                  <div key={ind} className="border border-gray-500 rounded-[10px] text-[20px] product-card bg-[white] shadow-md rounded cursor-pointer transform transition-transform duration:300 hover:scale-110 w-[200px] h-[270px] p-[20px] my-[10px] flexRow" onClick={() => discoverDetails(ele._id)}>
                     <img src={ele.image} alt="image" className="w-[150px] h-[150px]" />
-                    <div>
+                    <div className='' >
                       <div className="max-h-[30px] justify-content-center overflow-hidden text-font-medium text-gray-900 ">{ele.name}</div>
                       <div className="text-gray-700">
                         <span className="font-bold">₹{ele.price}</span>
                       </div>
                       <div className='flex flex-row'>
- <span className="max-h-[30px] flex flex-row justify-content-center max-w-[220px] overflow-hidden text-gray-600">{ele.dis}</span>
-                        </div>
-                     
+                        <span className="max-h-[30px] flex flex-row justify-content-center max-w-[220px] overflow-hidden text-gray-600">{ele.dis}</span>
+                      </div>
+
                     </div>
                   </div>
                 )
@@ -139,7 +139,7 @@ const Home = () => {
               ))
             ) :
             (
-              <img src={Loading} width='300px' className='m-auto'/>
+              <img src={Loading} width='300px' className='m-auto' />
             )
           }
 

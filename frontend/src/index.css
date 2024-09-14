@@ -12,6 +12,23 @@
   border:border-box;
 }
 
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-top:8px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid black;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  background-color: black;
+}
+
 .scroll::-webkit-scrollbar { /* WebKit browsers (Chrome, Safari, etc.) */
     display: none;
   }
