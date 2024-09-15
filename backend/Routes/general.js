@@ -14,10 +14,10 @@ let OTP = '' ;
 let time = 0 ;
 
 router.post('/sendDetail',async(req,res)=>{
-   const {name , mnumber , email , password} = req.body 
-   console.log('setDetail',req.body)
    const savedDetail = await detail.create(req.body)
-   const token = jwt.sign(savedDetail,process.env.JWT_KEY,{expiresIn:'1h'})
+   console.log('savedDetail',savedDetail)
+   const savedDetailObj = savedDetail.toObject()
+   const token = jwt.sign(savedDetailObj,process.env.JWT_KEY,{expiresIn:'1h'})
    res.json({'token':token})
 })
 
