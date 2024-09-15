@@ -1,4 +1,5 @@
 const express = require('express')
+const detail = require('../Models/detail')
 const product = require('../Models/product')
 const user = require('../Models/user');
 const cart = require('../Models/cart')
@@ -7,9 +8,20 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 const Auth = require('./Auth')
 const nodemailer = require('nodemailer')
+require('dotenv').config({path:'./.env'})
 
 let OTP = '' ;
 let time = 0 ;
+
+router.post('/sendDetail',async(req,res)=>{
+   const {name , mnumber , email , password} = req.body 
+   console.log('setDetail',req.body)
+   const savedDetail = await detail.create(req.body)
+   const token = jwt.sign(savedDetail,process.env.JWT_KEY,{expiresIn:'1h'})
+   res.json({'token':token})
+})
+
+
 router.post('/otpSending', async (req, res) => {
    const { email } = req.body
    // console.log('email',email)
@@ -81,7 +93,7 @@ router.post('/login', async (req, res) => {
    if (User) {
       const isPasswordCorrect = await bcrypt.compare(password, User.password)
       if (isPasswordCorrect) {
-         const token = jwt.sign({ userId: User._id }, 'chanakya', { expiresIn: '1d' })
+         const token = jwt.sign({ userId: User._id },process.env.JWT_KEY, { expiresIn: '1d' })
          res.json({ token: token, msg: 'login is successfull' })
       } else {
          res.json({ alert: 'incorrect credentials' })
